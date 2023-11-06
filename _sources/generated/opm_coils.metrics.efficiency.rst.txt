@@ -1,0 +1,6 @@
+﻿opm\_coils.metrics.efficiency
+=============================
+
+.. currentmodule:: opm_coils.metrics
+
+.. autofunction:: efficiency

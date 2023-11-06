@@ -1,0 +1,6 @@
+﻿opm\_coils.get\_target\_field
+=============================
+
+.. currentmodule:: opm_coils
+
+.. autofunction:: get_target_field

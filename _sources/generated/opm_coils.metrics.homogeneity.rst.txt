@@ -1,0 +1,6 @@
+﻿opm\_coils.metrics.homogeneity
+==============================
+
+.. currentmodule:: opm_coils.metrics
+
+.. autofunction:: homogeneity

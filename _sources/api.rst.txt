@@ -1,0 +1,21 @@
+:orphan:
+
+API
+===
+
+.. currentmodule:: opm_coils
+
+.. autosummary::
+   :toctree: generated/
+
+    BiplanarCoil
+    get_sphere_points
+    get_target_field
+
+.. currentmodule:: opm_coils.metrics
+
+.. autosummary::
+    :toctree: generated/
+
+    efficiency
+    homogeneity
