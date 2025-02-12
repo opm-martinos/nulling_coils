@@ -1,0 +1,6 @@
+﻿opmcoils.analysis.read\_opm\_info
+=================================
+
+.. currentmodule:: opmcoils.analysis
+
+.. autofunction:: read_opm_info

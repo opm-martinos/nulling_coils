@@ -6,12 +6,10 @@
 
 Computation times
 =================
-**28:52.249** total execution time for **auto_examples** files:
+**00:01.118** total execution time for **auto_examples** files:
 
 +-----------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_pcb_io.py` (``plot_pcb_io.py``)           | 28:27.769 | 0.0 MB |
-+-----------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_pcb_viz.py` (``plot_pcb_viz.py``)         | 00:24.480 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_planar_map.py` (``plot_planar_map.py``)   | 00:01.118 | 0.0 MB |
 +-----------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_auto_examples_plot_compare_sef.py` (``plot_compare_sef.py``) | 00:00.000 | 0.0 MB |
 +-----------------------------------------------------------------------------+-----------+--------+
@@ -19,5 +17,7 @@ Computation times
 +-----------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_auto_examples_plot_make_coil.py` (``plot_make_coil.py``)     | 00:00.000 | 0.0 MB |
 +-----------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_planar_map.py` (``plot_planar_map.py``)   | 00:00.000 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_pcb_io.py` (``plot_pcb_io.py``)           | 00:00.000 | 0.0 MB |
++-----------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_plot_pcb_viz.py` (``plot_pcb_viz.py``)         | 00:00.000 | 0.0 MB |
 +-----------------------------------------------------------------------------+-----------+--------+

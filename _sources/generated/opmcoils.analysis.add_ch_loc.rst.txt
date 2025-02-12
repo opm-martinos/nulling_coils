@@ -1,0 +1,6 @@
+﻿opmcoils.analysis.add\_ch\_loc
+==============================
+
+.. currentmodule:: opmcoils.analysis
+
+.. autofunction:: add_ch_loc

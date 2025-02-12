@@ -78,6 +78,7 @@
 <li><a class="reference internal" href="#design-and-manufacture-nulling-coils">Design and manufacture nulling coils</a></li>
 <li><a class="reference internal" href="#evaluation-metrics">Evaluation metrics</a></li>
 <li><a class="reference internal" href="#simulating-pcbs">Simulating PCBs</a></li>
+<li><a class="reference internal" href="#data-analysis">Data Analysis</a></li>
 </ul>
 </li>
 </ul>
@@ -186,6 +187,29 @@ total magnetic field from a combination of PCBs.</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/opmcoils.panels.plot_combined_panels.html#opmcoils.panels.plot_combined_panels" title="opmcoils.panels.plot_combined_panels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_combined_panels</span></code></a>(panels, currents, ...)</p></td>
 <td><p>Plots multiple panels and their combined fields in 3D</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-analysis">
+<h2>Data Analysis<a class="headerlink" href="#data-analysis" title="Link to this heading">¶</a></h2>
+<p>Analyze the performance of a coil design.</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opmcoils.analysis.get_good_chs.html#opmcoils.analysis.get_good_chs" title="opmcoils.analysis.get_good_chs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_good_chs</span></code></a>(fnames)</p></td>
+<td><p>Get good channels from txt files with residual fields.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opmcoils.analysis.load_remnant_fields.html#opmcoils.analysis.load_remnant_fields" title="opmcoils.analysis.load_remnant_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_remnant_fields</span></code></a>(fname, ch_names[, bias])</p></td>
+<td><p>Load remnant fields from txt file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opmcoils.analysis.add_ch_loc.html#opmcoils.analysis.add_ch_loc" title="opmcoils.analysis.add_ch_loc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_ch_loc</span></code></a>(raws, info_helmet, ch_mapping)</p></td>
+<td><p>Add channel locations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opmcoils.analysis.read_opm_info.html#opmcoils.analysis.read_opm_info" title="opmcoils.analysis.read_opm_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_opm_info</span></code></a>(fname)</p></td>
+<td><p>Read info for OPM.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opmcoils.analysis.find_events.html#opmcoils.analysis.find_events" title="opmcoils.analysis.find_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_events</span></code></a>(raw, **kwargs)</p></td>
+<td><p>Find events in OPM-MEG data.</p></td>
 </tr>
 </tbody>
 </table>

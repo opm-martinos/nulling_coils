@@ -1,0 +1,6 @@
+﻿opmcoils.analysis.load\_remnant\_fields
+=======================================
+
+.. currentmodule:: opmcoils.analysis
+
+.. autofunction:: load_remnant_fields

@@ -1,0 +1,6 @@
+﻿opmcoils.analysis.find\_events
+==============================
+
+.. currentmodule:: opmcoils.analysis
+
+.. autofunction:: find_events

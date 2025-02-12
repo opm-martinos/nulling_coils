@@ -19,6 +19,12 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 from scipy.interpolate import griddata
 
+from opmcoils.analysis import load_remnant_fields
+
+# %%
+# First, we define the coordinates of the sensors from the 3D model
+# of the sensor holders.
+
 
 def get_coords(component):
     if component == 'y':
@@ -74,40 +80,31 @@ def get_coords(component):
     return x, z, txt_fname
 
 
-def load_fields(fname):
-
-    B = np.empty(len(ch_names,))
-
-    X = np.loadtxt(fname,
-                   [('ch_name', 'U5'), ('Bx', '<f4'),
-                    ('By', '<f4'), ('Bz', '<f4'), ('Cal', '<f4')])
-    for idx, ch_name in enumerate(ch_names):
-        zdx = X['ch_name'].tolist().index(ch_name)
-        B[idx] = X['Bz'][zdx] - bias[ch_name]
-
-    return B
-
+# %%
+# The bias for each sensor is predefined in a dictionary.
 
 folder = Path.cwd() / 'data'
 
 bias = {'00:01': -0.06, '00:03': -0.74, '00:04': 0.51, '00:08': -0.43,
         '00:11': 0.11, '00:14': -0.13, '00:07': -0.42, '00:15': 1.23,
         '00:16': 0.07, '01:01': 0.42, '01:03': 0.19, '01:04': 0.02,
-        '01:06': 0.22, '01:08': -0.33, '01:09': 0.30, '01:10': -0.12,
-        '01:10': -0.12, '01:13': -1.95, '01:14': 0.65, '01:15': 0.27, # 1:13 old bias = -0.15
+        '01:06': 0.22, '01:08': -0.33, '01:09': 0.30,
+        '01:10': -0.12, '01:13': -1.95, '01:14': 0.65, '01:15': 0.27,
         '01:16': 0.62}
 
 ch_names = ['01:16', '01:13', '00:04', '01:01', '01:08',
             '01:10', '01:09', '01:03', '00:16', '01:04',
-                     '00:08', '00:15', '00:03', '00:11', # 01:10 is interpolated ...
+                     '00:08', '00:15', '00:03', '00:11',
             '01:15', '00:01', '01:06', '00:14', '01:14']
 
-show_ch_names = False
+# %%
+# Finally, we plot the field along the x-z plane.
 
 fig, axes = plt.subplots(1, 3, figsize=(12, 4), sharex=True, sharey=True)
 for ax, component in zip(axes, ['x', 'y', 'z']):
     x, z, txt_fname = get_coords(component)
-    B = load_fields(f'{folder}/{txt_fname}')
+    B = load_remnant_fields(f'{folder}/{txt_fname}',
+                            ch_names=ch_names, bias=bias)
 
     xi = np.linspace(np.min(x), np.max(x), 20)
     zi = np.linspace(np.min(z), np.max(z), 20)
@@ -128,12 +125,6 @@ for ax, component in zip(axes, ['x', 'y', 'z']):
                edgecolors='k', cmap='RdBu')
     ax.plot(0, 0, 'rx')
 
-    if show_ch_names:
-        for ch_name, x_val, z_val in zip(ch_names, x, z):
-            ax.annotate(f'{ch_name}', (x_val, z_val),
-                        textcoords="offset points", xytext=(0, 10),
-                        ha='center')
-
     ax.xaxis.set_major_formatter(FormatStrFormatter('%d'))
     ax.yaxis.set_major_formatter(FormatStrFormatter('%d'))
     ax.spines['right'].set_visible(False)
@@ -147,8 +138,6 @@ for ax, component in zip(axes, ['x', 'y', 'z']):
     ax.set_xticks(np.linspace(-10, 10, 5))
     ax.set_xlabel('z (cm)')
     ax.set_title(f'$B_{component}$ coil on')
-    # ax.set_xlim((xi[0] - 2, xi[-1] + 2))
-    # ax.set_ylim((zi[0] - 2, zi[-1] + 2))
 
 axes[0].set_ylabel('x (cm)')
 plt.tight_layout()

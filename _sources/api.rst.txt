@@ -50,3 +50,19 @@ total magnetic field from a combination of PCBs.
     plot_panel_profile
     plot_panel
     plot_combined_panels
+
+Data Analysis
+^^^^^^^^^^^^^
+
+Analyze the performance of a coil design.
+
+.. currentmodule:: opmcoils.analysis
+
+.. autosummary::
+    :toctree: generated/
+
+    get_good_chs
+    load_remnant_fields
+    add_ch_loc
+    read_opm_info
+    find_events

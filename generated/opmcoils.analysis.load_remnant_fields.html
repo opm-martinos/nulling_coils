@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Computation times &#8212; opmcoils  documentation</title>
+    <title>opmcoils.analysis.load_remnant_fields &#8212; opmcoils  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -48,7 +48,7 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="index.html">Examples</a></li>
+                <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../api.html">API</a></li>
                 <li><a href="../assembly.html">Assembly</a></li>
                 <li><a href="https://github.com/opm-martinos/cmeg_coil_design">GitHub</a></li>
@@ -74,7 +74,10 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Computation times</a></li>
+<li><a class="reference internal" href="#">opmcoils.analysis.load_remnant_fields</a><ul>
+<li><a class="reference internal" href="#opmcoils.analysis.load_remnant_fields"><code class="docutils literal notranslate"><span class="pre">load_remnant_fields()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -86,7 +89,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="../_sources/auto_examples/sg_execution_times.rst.txt"
+  <a href="../_sources/generated/opmcoils.analysis.load_remnant_fields.rst.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -110,37 +113,26 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="computation-times">
-<span id="sphx-glr-auto-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Link to this heading">¶</a></h1>
-<p><strong>00:01.118</strong> total execution time for <strong>auto_examples</strong> files:</p>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_planar_map.html#sphx-glr-auto-examples-plot-planar-map-py"><span class="std std-ref">02. Planar field mapping</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_planar_map.py</span></code>)</p></td>
-<td><p>00:01.118</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_compare_sef.html#sphx-glr-auto-examples-plot-compare-sef-py"><span class="std std-ref">06. Analyze SEF Data with OPM</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_compare_sef.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_helmet.html#sphx-glr-auto-examples-plot-helmet-py"><span class="std std-ref">03. Helmet field mapping</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_helmet.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_make_coil.html#sphx-glr-auto-examples-plot-make-coil-py"><span class="std std-ref">01. Design biplanar coils</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_make_coil.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_pcb_io.html#sphx-glr-auto-examples-plot-pcb-io-py"><span class="std std-ref">04. Loading PCB files</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_pcb_io.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_pcb_viz.html#sphx-glr-auto-examples-plot-pcb-viz-py"><span class="std std-ref">05. Compute and visualize magnetic field from PCB</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_pcb_viz.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="opmcoils-analysis-load-remnant-fields">
+<h1>opmcoils.analysis.load_remnant_fields<a class="headerlink" href="#opmcoils-analysis-load-remnant-fields" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="opmcoils.analysis.load_remnant_fields">
+<span class="sig-prename descclassname"><span class="pre">opmcoils.analysis.</span></span><span class="sig-name descname"><span class="pre">load_remnant_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.analysis.load_remnant_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Load remnant fields from txt file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fname</strong><span class="classifier">str</span></dt><dd><p>Path to the txt file.</p>
+</dd>
+<dt><strong>ch_names</strong><span class="classifier">list</span></dt><dd><p>List of channel names.</p>
+</dd>
+<dt><strong>bias</strong><span class="classifier">dict</span></dt><dd><p>Dictionary containing bias for each channel.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 

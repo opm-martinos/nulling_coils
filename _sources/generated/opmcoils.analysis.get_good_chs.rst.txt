@@ -1,0 +1,6 @@
+﻿opmcoils.analysis.get\_good\_chs
+================================
+
+.. currentmodule:: opmcoils.analysis
+
+.. autofunction:: get_good_chs
