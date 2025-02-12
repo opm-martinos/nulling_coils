@@ -1,3 +1,6 @@
+Assembly
+--------
+
 Listed below are the components required for assembling the
 scaffolding for the nulling coils.
 
