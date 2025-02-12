@@ -3,8 +3,9 @@
 <html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Overview: module code &#8212; opm_coils  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>opmcoils.panels.combined_panel_field &#8212; opmcoils  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -40,7 +41,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../index.html">
-          opm_coils</a>
+          opmcoils</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
 
@@ -49,6 +50,7 @@
             
                 <li><a href="../auto_examples/index.html">Examples</a></li>
                 <li><a href="../api.html">API</a></li>
+                <li><a href="../assembly.html">Assembly</a></li>
                 <li><a href="https://github.com/opm-martinos/cmeg_coil_design">GitHub</a></li>
             
             
@@ -71,7 +73,13 @@
      href="#">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"
       role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">opmcoils.panels.combined_panel_field</a><ul>
+<li><a class="reference internal" href="#opmcoils.panels.combined_panel_field"><code class="docutils literal notranslate"><span class="pre">combined_panel_field()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</ul>
 </li>
               
             
@@ -79,7 +87,11 @@
             
             
             
-              <li class="hidden-sm"></li>
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/generated/opmcoils.panels.combined_panel_field.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
             
           </ul>
 
@@ -101,10 +113,28 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="opm_coils/biplanar_coil.html">opm_coils.biplanar_coil</a></li>
-<li><a href="opm_coils/metrics.html">opm_coils.metrics</a></li>
-</ul>
+  <section id="opmcoils-panels-combined-panel-field">
+<h1>opmcoils.panels.combined_panel_field<a class="headerlink" href="#opmcoils-panels-combined-panel-field" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="opmcoils.panels.combined_panel_field">
+<span class="sig-prename descclassname"><span class="pre">opmcoils.panels.</span></span><span class="sig-name descname"><span class="pre">combined_panel_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.combined_panel_field" title="Link to this definition">¶</a></dt>
+<dd><p>Compute field from multiple sets of panels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>panels</strong><span class="classifier">list of PCBPanels</span></dt><dd><p>each panel to compute field for.</p>
+</dd>
+<dt><strong>currents</strong><span class="classifier">list of currents (dict of floats)</span></dt><dd><p>currents to be applied to each panel.</p>
+</dd>
+<dt><strong>target_points</strong><span class="classifier">list of points (3d points ndarray)</span></dt><dd><p>points where to compute fields.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
 
     </div>
       

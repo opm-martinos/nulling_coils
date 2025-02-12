@@ -1,0 +1,6 @@
+﻿opmcoils.panels.plot\_panel\_profile
+====================================
+
+.. currentmodule:: opmcoils.panels
+
+.. autofunction:: plot_panel_profile

@@ -1,0 +1,6 @@
+﻿opmcoils.get\_sphere\_points
+============================
+
+.. currentmodule:: opmcoils
+
+.. autofunction:: get_sphere_points

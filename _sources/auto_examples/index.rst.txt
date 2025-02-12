@@ -16,14 +16,99 @@ OPM-coils examples
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_make_contours_thumb.png
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_make_coil_thumb.png
     :alt:
 
-  :ref:`sphx_glr_auto_examples_make_contours.py`
+  :ref:`sphx_glr_auto_examples_plot_make_coil.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Design biplanar coils</div>
+      <div class="sphx-glr-thumbnail-title">01. Design biplanar coils</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example demonstrating how to map the background field along a plane.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_planar_map_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_planar_map.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">02. Planar field mapping</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example demonstrating how to map the background field on the helmet.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_helmet_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_helmet.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">03. Helmet field mapping</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Here, we will demonstrate how to load PCB files and save them to HDF5 format after inferring th...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_pcb_io_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_pcb_io.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">04. Loading PCB files</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example demonstrating how to load the PCB from HDF5 files which includes the connection informa...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_pcb_viz_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_pcb_viz.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">05. Compute and visualize magnetic field from PCB</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze somatosensory evoked field (SEF) data collected with o...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_compare_sef_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_compare_sef.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">06. Analyze SEF Data with OPM</div>
     </div>
 
 
@@ -35,7 +120,12 @@ OPM-coils examples
 .. toctree::
    :hidden:
 
-   /auto_examples/make_contours
+   /auto_examples/plot_make_coil
+   /auto_examples/plot_planar_map
+   /auto_examples/plot_helmet
+   /auto_examples/plot_pcb_io
+   /auto_examples/plot_pcb_viz
+   /auto_examples/plot_compare_sef
 
 
 .. only:: html

@@ -1,0 +1,43 @@
+﻿opmcoils.BiplanarCoil
+=====================
+
+.. currentmodule:: opmcoils
+
+.. autoclass:: BiplanarCoil
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BiplanarCoil.__init__
+      ~BiplanarCoil.add_shield
+      ~BiplanarCoil.discretize
+      ~BiplanarCoil.evaluate
+      ~BiplanarCoil.fit
+      ~BiplanarCoil.make_cuts
+      ~BiplanarCoil.plot
+      ~BiplanarCoil.plot_coil
+      ~BiplanarCoil.plot_field
+      ~BiplanarCoil.plot_field_2D
+      ~BiplanarCoil.predict
+      ~BiplanarCoil.remove_shield
+      ~BiplanarCoil.save
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BiplanarCoil.inductance
+      ~BiplanarCoil.length
+      ~BiplanarCoil.resistance
+      ~BiplanarCoil.shape
+   
+   

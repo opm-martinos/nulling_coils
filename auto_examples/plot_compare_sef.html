@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>06. Analyze SEF Data with OPM &#8212; opmcoils  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=9afac83c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          opmcoils</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../assembly.html">Assembly</a></li>
+                <li><a href="https://github.com/opm-martinos/cmeg_coil_design">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">06. Analyze SEF Data with OPM</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/auto_examples/plot_compare_sef.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-compare-sef-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="analyze-sef-data-with-opm">
+<span id="sphx-glr-auto-examples-plot-compare-sef-py"></span><h1>06. Analyze SEF Data with OPM<a class="headerlink" href="#analyze-sef-data-with-opm" title="Link to this heading">¶</a></h1>
+<p>This example demonstrates how to analyze somatosensory evoked field (SEF) data
+collected with optically pumped magnetometers (OPM) and compare it with
+superconducting quantum interference device (SQUID) data. The OPM data was
+obtained with the background field nulling coils we developed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Mainak Jas &lt;mjas@mgh.harvard.edu&gt;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">mne</span>
+<span class="kn">from</span> <span class="nn">opmcoils.analysis</span> <span class="kn">import</span> <span class="n">find_events</span><span class="p">,</span> <span class="n">add_ch_loc</span><span class="p">,</span> <span class="n">read_opm_info</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">pooch</span>
+
+<span class="c1"># sphinx_gallery_thumbnail_number = 3</span>
+</pre></div>
+</div>
+<p>First, use pooch to download the data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">url</span></a> <span class="o">=</span> <span class="s2">&quot;https://osf.io/aqh27/download&quot;</span>
+
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.cwd" title="pathlib.Path.cwd" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span></a><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;data&#39;</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">project_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_dir</span></a> <span class="o">/</span> <span class="s1">&#39;sef_data&#39;</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path</span></a> <span class="o">=</span> <span class="n">pooch</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">url</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">url</span></a><span class="p">,</span>
+    <span class="n">known_hash</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># We don&#39;t know the hash</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_dir</span></a><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="s1">&#39;sub-01.zip&#39;</span><span class="p">,</span>  <span class="c1"># Specify the filename</span>
+    <span class="n">processor</span><span class="o">=</span><span class="n">pooch</span><span class="o">.</span><span class="n">Unzip</span><span class="p">(</span><span class="n">extract_dir</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">project_dir</span></a><span class="p">),</span>  <span class="c1"># Extract to a folder named &#39;sub-01&#39;</span>
+    <span class="n">progressbar</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we define the file paths</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">subject</span></a> <span class="o">=</span> <span class="s1">&#39;sub-01&#39;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a> <span class="o">=</span> <span class="s1">&#39;20240722&#39;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cond</span></a> <span class="o">=</span> <span class="s1">&#39;median&#39;</span>
+
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">subjects_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">project_dir</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">subject</span></a>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_fname</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">subjects_dir</span></a> <span class="o">/</span> <span class="s1">&#39;opm_meg&#39;</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a><span class="si">}</span><span class="s1">_</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">subject</span></a><span class="si">}</span><span class="s1">_paneltesting_</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cond</span></a><span class="si">}</span><span class="s1">_raw.fif&#39;</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_fname_squid</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">subjects_dir</span></a> <span class="o">/</span> <span class="s1">&#39;squid_meg&#39;</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a> <span class="o">/</span> <span class="s1">&#39;RT_median_raw.fif&#39;</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">helmet_info_fname</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_dir</span></a> <span class="o">/</span> <span class="s1">&#39;helmet_99channel_size-60.fif&#39;</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ch_mapping_fname</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">subjects_dir</span></a> <span class="o">/</span> <span class="s1">&#39;opm_meg&#39;</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a> <span class="o">/</span> <span class="s1">&#39;mapping.json&#39;</span>
+</pre></div>
+</div>
+<p>Then, we start by processing OPM data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bads</span></a> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;01:15&#39;</span><span class="p">,</span> <span class="s1">&#39;00:14&#39;</span><span class="p">,</span> <span class="s1">&#39;00:15&#39;</span><span class="p">,</span> <span class="s1">&#39;00:16&#39;</span><span class="p">]</span>
+
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw" title="mne.io.Raw" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_opm</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.io.read_raw_fif.html#mne.io.read_raw_fif" title="mne.io.read_raw_fif" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-function"><span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_raw_fif</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_fname</span></a><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.rename_channels" title="mne.io.Raw.rename_channels" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_opm</span><span class="o">.</span><span class="n">rename_channels</span></a><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;-BZ_CL&#39;</span><span class="p">))</span>
+<a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" title="mne._fiff.meas_info.Info" class="sphx-glr-backref-module-mne-_fiff-meas_info sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_opm</span><span class="o">.</span><span class="n">info</span></a><span class="p">[</span><span class="s1">&#39;bads&#39;</span><span class="p">]</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bads</span></a>
+
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.set_channel_types" title="mne.io.Raw.set_channel_types" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_opm</span><span class="o">.</span><span class="n">set_channel_types</span></a><span class="p">({</span><span class="s1">&#39;Input-1&#39;</span><span class="p">:</span> <span class="s1">&#39;stim&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Opening raw data file /Users/mainak/Desktop/github_repos/cmeg_coil_design/examples/data/sef_data/sub-01/opm_meg/20240722/20240722_sub-01_paneltesting_median_raw.fif...
+Isotrak not found
+    Range : 0 ... 303721 =      0.000 ...   303.721 secs
+Ready.
+Reading 0 ... 303721  =      0.000 ...   303.721 secs...
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<script type="text/javascript">
+    const toggleVisibility = (className) => {
+
+  const elements = document.querySelectorAll(`.${className}`)
+
+  elements.forEach(element => {
+    if (element.classList.contains('repr-section-header')) {
+      // Don't collapse the section header row.
+       return
+    }
+    if (element.classList.contains('repr-element-collapsed')) {
+      // Force a reflow to ensure the display change takes effect before removing the class
+      element.classList.remove('repr-element-collapsed')
+      element.offsetHeight // This forces the browser to recalculate layout
+      element.classList.remove('repr-element-faded')
+    } else {
+      // Start transition to hide the element
+      element.classList.add('repr-element-faded')
+      element.addEventListener('transitionend', handler = (e) => {
+        if (e.propertyName === 'opacity' && getComputedStyle(element).opacity === '0.2') {
+          element.classList.add('repr-element-collapsed')
+          element.removeEventListener('transitionend', handler)
+        }
+      });
+    }
+  });
+
+  // Take care of button (adjust caret)
+  const button = document.querySelectorAll(`.repr-section-header.${className} > th.repr-section-toggle-col > button`)[0]
+  button.classList.toggle('collapsed')
+
+  // Take care of the tooltip of the section header row
+  const sectionHeaderRow = document.querySelectorAll(`tr.repr-section-header.${className}`)[0]
+  sectionHeaderRow.classList.toggle('collapsed')
+  sectionHeaderRow.title = sectionHeaderRow.title === 'Hide section' ? 'Show section' : 'Hide section'
+}
+</script>
+
+<style type="text/css">
+    table.repr.table.table-hover.table-striped.table-sm.table-responsive.small {
+  /* Don't make rows wider than they need to be. */
+  display: inline;
+}
+
+table > tbody > tr.repr-element > td {
+  /* Apply a tighter layout to the table cells. */
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-right: 1rem;
+}
+
+table > tbody > tr > td.repr-section-toggle-col {
+  /* Remove background and border of the first cell in every row
+     (this row is only used for the collapse / uncollapse caret)
+
+     TODO: Need to find a good solution for VS Code that works in both
+           light and dark mode. */
+  border-color: transparent;
+  --bs-table-accent-bg: transparent;
+}
+
+tr.repr-section-header {
+  /* Remove stripes from section header rows */
+  background-color: transparent;
+  border-color: transparent;
+  --bs-table-striped-bg: transparent;
+  cursor: pointer;
+}
+
+tr.repr-section-header > th {
+  text-align: left !important;
+  vertical-align: middle;
+}
+
+.repr-element, tr.repr-element > td {
+  opacity: 1;
+  text-align: left !important;
+}
+
+.repr-element-faded {
+  transition: 0.3s ease;
+  opacity: 0.2;
+}
+
+.repr-element-collapsed {
+  display: none;
+}
+
+/* Collapse / uncollapse button and the caret it contains. */
+.repr-section-toggle-col button {
+  cursor: pointer;
+  width: 1rem;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+span.collapse-uncollapse-caret {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+}
+
+/* The collapse / uncollapse carets were copied from the free Font Awesome collection and adjusted. */
+
+/* Default to black carets for light mode */
+.repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+}
+
+.repr-section-toggle-col
+  > button:not(.collapsed)
+  > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+}
+
+/* Use white carets for dark mode */
+@media (prefers-color-scheme: dark) {
+  .repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+  }
+
+  .repr-section-toggle-col
+    > button:not(.collapsed)
+    > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+  }
+}
+
+.channel-names-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+  color: #0d6efd;
+}
+
+.channel-names-btn:hover {
+  color: #0a58ca;
+}
+</style>
+
+
+
+<table class="repr table table-hover table-striped table-sm table-responsive small">
+
+
+
+
+
+
+
+
+<tr class="repr-section-header general-15d92238-ecd5-4666-880b-379dc11273f7"  title="Hide section"
+    onclick="toggleVisibility('general-15d92238-ecd5-4666-880b-379dc11273f7')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>General</strong>
+    </th>
+</tr>
+
+<tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Filename(s)</td>
+    <td>
+
+        20240722_sub-01_paneltesting_median_raw.fif
+
+
+    </td>
+</tr>
+
+<tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>MNE object type</td>
+    <td>Raw</td>
+</tr>
+<tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Measurement date</td>
+
+    <td>2024-07-22 at 18:06:45 UTC</td>
+
+</tr>
+<tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Participant</td>
+
+    <td>Unknown</td>
+
+</tr>
+<tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Experimenter</td>
+
+    <td>Unknown</td>
+
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-section-header acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0"
+    title="Hide section"  onclick="toggleVisibility('acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Acquisition</strong>
+    </th>
+</tr>
+
+<tr class="repr-element acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Duration</td>
+    <td>00:05:04 (HH:MM:SS)</td>
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-element acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Sampling frequency</td>
+    <td>1000.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Time points</td>
+    <td>303,722</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+<tr class="repr-section-header channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06"  title="Hide section"
+    onclick="toggleVisibility('channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Channels</strong>
+    </th>
+</tr>
+
+
+<tr class="repr-element channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Magnetometers</td>
+    <td>
+        <button class="channel-names-btn" onclick="alert('Good Magnetometers:\n\n00:01, 00:03, 00:04, 00:08, 00:11, 01:01, 01:03, 01:04, 01:06, 01:08, 01:09, 01:10, 01:13, 01:14, 01:16')" title="(Click to open in popup)&#13;&#13;00:01, 00:03, 00:04, 00:08, 00:11, 01:01, 01:03, 01:04, 01:06, 01:08, 01:09, 01:10, 01:13, 01:14, 01:16">
+            15
+        </button>
+
+
+
+        and <button class="channel-names-btn" onclick="alert('Bad Magnetometers:\n\n00:14, 00:15, 00:16, 01:15')" title="(Click to open in popup)&#13;&#13;00:14, 00:15, 00:16, 01:15">
+            4 bad
+        </button>
+
+    </td>
+</tr>
+
+
+<tr class="repr-element channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Stimulus</td>
+    <td>
+        <button class="channel-names-btn" onclick="alert('Good Stimulus:\n\nInput-1')" title="(Click to open in popup)&#13;&#13;Input-1">
+            1
+        </button>
+
+
+    </td>
+</tr>
+
+
+<tr class="repr-element channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Head & sensor digitization</td>
+
+    <td>Not available</td>
+
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-section-header filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd"  title="Hide section"
+    onclick="toggleVisibility('filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Filters</strong>
+    </th>
+</tr>
+
+<tr class="repr-element filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Highpass</td>
+    <td>0.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Lowpass</td>
+    <td>500.00 Hz</td>
+</tr>
+
+
+</table>
+</div>
+<br />
+<br /><p>Electrical median nerve stimulation creates artifacts. We
+will annotate the artifacts to avoid filtering the sharp transients.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a> <span class="o">=</span> <span class="n">find_events</span><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw" title="mne.io.Raw" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_opm</span></a><span class="p">,</span> <span class="n">min_duration</span><span class="o">=</span><span class="mf">1.</span> <span class="o">/</span> <a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" title="mne._fiff.meas_info.Info" class="sphx-glr-backref-module-mne-_fiff-meas_info sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_opm</span><span class="o">.</span><span class="n">info</span></a><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">])</span>
+<a href="https://mne.tools/dev/generated/mne.Annotations.html#mne.Annotations" title="mne.Annotations" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.annotations_from_events.html#mne.annotations_from_events" title="mne.annotations_from_events" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-function"><span class="n">mne</span><span class="o">.</span><span class="n">annotations_from_events</span></a><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a><span class="p">,</span> <a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" title="mne._fiff.meas_info.Info" class="sphx-glr-backref-module-mne-_fiff-meas_info sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_opm</span><span class="o">.</span><span class="n">info</span></a><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
+                                    <span class="n">event_desc</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;BAD_STIM&#39;</span><span class="p">})</span>
+<span class="c1"># XXX: annotations_from_events should have duration option</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span><span class="o">.</span><span class="n">onset</span></a> <span class="o">-=</span> <span class="mf">0.002</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span><span class="o">.</span><span class="n">duration</span></a> <span class="o">+=</span> <span class="mf">0.003</span>
+
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.notch_filter" title="mne.io.Raw.notch_filter" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_opm</span><span class="o">.</span><span class="n">notch_filter</span></a><span class="p">(</span><span class="mf">60.</span><span class="p">)</span>
+
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.set_annotations" title="mne.io.Raw.set_annotations" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_opm</span><span class="o">.</span><span class="n">set_annotations</span></a><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.Annotations.html#mne.Annotations" title="mne.Annotations" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span></a><span class="p">)</span>
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.filter" title="mne.io.Raw.filter" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_opm</span><span class="o">.</span><span class="n">filter</span></a><span class="p">(</span><span class="mf">4.</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">skip_by_annotation</span><span class="o">=</span><span class="p">())</span>
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.filter" title="mne.io.Raw.filter" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_opm</span><span class="o">.</span><span class="n">filter</span></a><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="n">skip_by_annotation</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;BAD_STIM&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>608 events found on stim channel Input-1
+Event IDs: [1]
+Filtering raw data in 1 contiguous segment
+Setting up band-stop filter from 59 - 61 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal bandstop filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 59.35
+- Lower transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 59.10 Hz)
+- Upper passband edge: 60.65 Hz
+- Upper transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 60.90 Hz)
+- Filter length: 6601 samples (6.601 s)
+
+Filtering raw data in 1 contiguous segment
+Setting up high-pass filter at 4 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal highpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 4.00
+- Lower transition bandwidth: 2.00 Hz (-6 dB cutoff frequency: 3.00 Hz)
+- Filter length: 1651 samples (1.651 s)
+
+Filtering raw data in 609 contiguous segments
+Setting up low-pass filter at 1.5e+02 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal lowpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Upper passband edge: 150.00 Hz
+- Upper transition bandwidth: 37.50 Hz (-6 dB cutoff frequency: 168.75 Hz)
+- Filter length: 89 samples (0.089 s)
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<script type="text/javascript">
+    const toggleVisibility = (className) => {
+
+  const elements = document.querySelectorAll(`.${className}`)
+
+  elements.forEach(element => {
+    if (element.classList.contains('repr-section-header')) {
+      // Don't collapse the section header row.
+       return
+    }
+    if (element.classList.contains('repr-element-collapsed')) {
+      // Force a reflow to ensure the display change takes effect before removing the class
+      element.classList.remove('repr-element-collapsed')
+      element.offsetHeight // This forces the browser to recalculate layout
+      element.classList.remove('repr-element-faded')
+    } else {
+      // Start transition to hide the element
+      element.classList.add('repr-element-faded')
+      element.addEventListener('transitionend', handler = (e) => {
+        if (e.propertyName === 'opacity' && getComputedStyle(element).opacity === '0.2') {
+          element.classList.add('repr-element-collapsed')
+          element.removeEventListener('transitionend', handler)
+        }
+      });
+    }
+  });
+
+  // Take care of button (adjust caret)
+  const button = document.querySelectorAll(`.repr-section-header.${className} > th.repr-section-toggle-col > button`)[0]
+  button.classList.toggle('collapsed')
+
+  // Take care of the tooltip of the section header row
+  const sectionHeaderRow = document.querySelectorAll(`tr.repr-section-header.${className}`)[0]
+  sectionHeaderRow.classList.toggle('collapsed')
+  sectionHeaderRow.title = sectionHeaderRow.title === 'Hide section' ? 'Show section' : 'Hide section'
+}
+</script>
+
+<style type="text/css">
+    table.repr.table.table-hover.table-striped.table-sm.table-responsive.small {
+  /* Don't make rows wider than they need to be. */
+  display: inline;
+}
+
+table > tbody > tr.repr-element > td {
+  /* Apply a tighter layout to the table cells. */
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-right: 1rem;
+}
+
+table > tbody > tr > td.repr-section-toggle-col {
+  /* Remove background and border of the first cell in every row
+     (this row is only used for the collapse / uncollapse caret)
+
+     TODO: Need to find a good solution for VS Code that works in both
+           light and dark mode. */
+  border-color: transparent;
+  --bs-table-accent-bg: transparent;
+}
+
+tr.repr-section-header {
+  /* Remove stripes from section header rows */
+  background-color: transparent;
+  border-color: transparent;
+  --bs-table-striped-bg: transparent;
+  cursor: pointer;
+}
+
+tr.repr-section-header > th {
+  text-align: left !important;
+  vertical-align: middle;
+}
+
+.repr-element, tr.repr-element > td {
+  opacity: 1;
+  text-align: left !important;
+}
+
+.repr-element-faded {
+  transition: 0.3s ease;
+  opacity: 0.2;
+}
+
+.repr-element-collapsed {
+  display: none;
+}
+
+/* Collapse / uncollapse button and the caret it contains. */
+.repr-section-toggle-col button {
+  cursor: pointer;
+  width: 1rem;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+span.collapse-uncollapse-caret {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+}
+
+/* The collapse / uncollapse carets were copied from the free Font Awesome collection and adjusted. */
+
+/* Default to black carets for light mode */
+.repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+}
+
+.repr-section-toggle-col
+  > button:not(.collapsed)
+  > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+}
+
+/* Use white carets for dark mode */
+@media (prefers-color-scheme: dark) {
+  .repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+  }
+
+  .repr-section-toggle-col
+    > button:not(.collapsed)
+    > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+  }
+}
+
+.channel-names-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+  color: #0d6efd;
+}
+
+.channel-names-btn:hover {
+  color: #0a58ca;
+}
+</style>
+
+
+
+<table class="repr table table-hover table-striped table-sm table-responsive small">
+
+
+
+
+
+
+
+
+<tr class="repr-section-header general-253d15cf-2eb0-46c1-b522-e3a3bc42a930"  title="Hide section"
+    onclick="toggleVisibility('general-253d15cf-2eb0-46c1-b522-e3a3bc42a930')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>General</strong>
+    </th>
+</tr>
+
+<tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Filename(s)</td>
+    <td>
+
+        20240722_sub-01_paneltesting_median_raw.fif
+
+
+    </td>
+</tr>
+
+<tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>MNE object type</td>
+    <td>Raw</td>
+</tr>
+<tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Measurement date</td>
+
+    <td>2024-07-22 at 18:06:45 UTC</td>
+
+</tr>
+<tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Participant</td>
+
+    <td>Unknown</td>
+
+</tr>
+<tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Experimenter</td>
+
+    <td>Unknown</td>
+
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-section-header acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60"
+    title="Hide section"  onclick="toggleVisibility('acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Acquisition</strong>
+    </th>
+</tr>
+
+<tr class="repr-element acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Duration</td>
+    <td>00:05:04 (HH:MM:SS)</td>
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-element acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Sampling frequency</td>
+    <td>1000.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Time points</td>
+    <td>303,722</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+<tr class="repr-section-header channels-00b704ec-6e0b-4418-9879-c5721f47fd14"  title="Hide section"
+    onclick="toggleVisibility('channels-00b704ec-6e0b-4418-9879-c5721f47fd14')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Channels</strong>
+    </th>
+</tr>
+
+
+<tr class="repr-element channels-00b704ec-6e0b-4418-9879-c5721f47fd14 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Magnetometers</td>
+    <td>
+        <button class="channel-names-btn" onclick="alert('Good Magnetometers:\n\n00:01, 00:03, 00:04, 00:08, 00:11, 01:01, 01:03, 01:04, 01:06, 01:08, 01:09, 01:10, 01:13, 01:14, 01:16')" title="(Click to open in popup)&#13;&#13;00:01, 00:03, 00:04, 00:08, 00:11, 01:01, 01:03, 01:04, 01:06, 01:08, 01:09, 01:10, 01:13, 01:14, 01:16">
+            15
+        </button>
+
+
+
+        and <button class="channel-names-btn" onclick="alert('Bad Magnetometers:\n\n00:14, 00:15, 00:16, 01:15')" title="(Click to open in popup)&#13;&#13;00:14, 00:15, 00:16, 01:15">
+            4 bad
+        </button>
+
+    </td>
+</tr>
+
+
+<tr class="repr-element channels-00b704ec-6e0b-4418-9879-c5721f47fd14 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Stimulus</td>
+    <td>
+        <button class="channel-names-btn" onclick="alert('Good Stimulus:\n\nInput-1')" title="(Click to open in popup)&#13;&#13;Input-1">
+            1
+        </button>
+
+
+    </td>
+</tr>
+
+
+<tr class="repr-element channels-00b704ec-6e0b-4418-9879-c5721f47fd14 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Head & sensor digitization</td>
+
+    <td>Not available</td>
+
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-section-header filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c"  title="Hide section"
+    onclick="toggleVisibility('filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c')">
+    <th class="repr-section-toggle-col">
+        <button>
+
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Filters</strong>
+    </th>
+</tr>
+
+<tr class="repr-element filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Highpass</td>
+    <td>4.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Lowpass</td>
+    <td>150.00 Hz</td>
+</tr>
+
+
+</table>
+</div>
+<br />
+<br /><p>Then, we create evoked response</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reject</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># dict(mag=11e-12)</span>
+<a href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs" title="mne.Epochs" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">epochs_opm</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs" title="mne.Epochs" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class"><span class="n">mne</span><span class="o">.</span><span class="n">Epochs</span></a><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw" title="mne.io.Raw" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_opm</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># ISI = 300 ms</span>
+                        <span class="n">reject_by_annotation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">reject</span><span class="o">=</span><span class="n">reject</span><span class="p">,</span> <span class="n">reject_tmin</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+                        <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray" title="mne.EvokedArray" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">evoked_opm</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs.average" title="mne.Epochs.average" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-method"><span class="n">epochs_opm</span><span class="o">.</span><span class="n">average</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Not setting metadata
+608 matching events found
+Setting baseline interval to [-0.2, 0.0] s
+Applying baseline correction (mode: mean)
+0 projection items activated
+Using data from preloaded Raw for 608 events and 501 original time points ...
+1 bad epochs dropped
+</pre></div>
+</div>
+<p>We add channel locations for the OPM sensors
+and plot the evoked response with spatial colors.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" title="mne._fiff.meas_info.Info" class="sphx-glr-backref-module-mne-_fiff-meas_info sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">info_helmet</span></a> <span class="o">=</span> <span class="n">read_opm_info</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">helmet_info_fname</span></a><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ch_mapping_fname</span></a><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <a href="https://docs.python.org/3/library/io.html#io.TextIOWrapper" title="io.TextIOWrapper" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fd</span></a><span class="p">:</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ch_mapping</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/json.html#json.load" title="json.load" class="sphx-glr-backref-module-json sphx-glr-backref-type-py-function"><span class="n">json</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/io.html#io.TextIOWrapper" title="io.TextIOWrapper" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fd</span></a><span class="p">)</span>
+
+<span class="n">add_ch_loc</span><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray" title="mne.EvokedArray" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">evoked_opm</span></a><span class="p">,</span> <a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" title="mne._fiff.meas_info.Info" class="sphx-glr-backref-module-mne-_fiff-meas_info sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">info_helmet</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ch_mapping</span></a><span class="p">)</span>
+
+<a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray.plot" title="mne.EvokedArray.plot" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-method"><span class="n">evoked_opm</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_compare_sef_001.png" srcset="../_images/sphx_glr_plot_compare_sef_001.png" alt="Magnetometers (15 channels)" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Isotrak not found
+
+&lt;Figure size 640x300 with 2 Axes&gt;
+</pre></div>
+</div>
+<p>Let us now process the SQUID data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw" title="mne.io.Raw" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_squid</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.io.read_raw_fif.html#mne.io.read_raw_fif" title="mne.io.read_raw_fif" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-function"><span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_raw_fif</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_fname_squid</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_fname_squid</span></a><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.pick_types" title="mne.io.Raw.pick_types" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_squid</span><span class="o">.</span><span class="n">pick_types</span></a><span class="p">(</span><span class="n">meg</span><span class="o">=</span><span class="s1">&#39;mag&#39;</span><span class="p">,</span> <span class="n">stim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.find_events.html#mne.find_events" title="mne.find_events" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-function"><span class="n">mne</span><span class="o">.</span><span class="n">find_events</span></a><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw" title="mne.io.Raw" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_squid</span></a><span class="p">,</span> <span class="n">min_duration</span><span class="o">=</span><span class="mf">1.</span> <span class="o">/</span> <a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" title="mne._fiff.meas_info.Info" class="sphx-glr-backref-module-mne-_fiff-meas_info sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_opm</span><span class="o">.</span><span class="n">info</span></a><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">])</span>
+
+<a href="https://mne.tools/dev/generated/mne.Annotations.html#mne.Annotations" title="mne.Annotations" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.annotations_from_events.html#mne.annotations_from_events" title="mne.annotations_from_events" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-function"><span class="n">mne</span><span class="o">.</span><span class="n">annotations_from_events</span></a><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a><span class="p">,</span> <a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" title="mne._fiff.meas_info.Info" class="sphx-glr-backref-module-mne-_fiff-meas_info sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_squid</span><span class="o">.</span><span class="n">info</span></a><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">],</span>
+                                    <span class="n">event_desc</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;BAD_STIM&#39;</span><span class="p">})</span>
+<span class="c1"># XXX: annotations_from_events should have duration option</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span><span class="o">.</span><span class="n">onset</span></a> <span class="o">-=</span> <span class="mf">0.002</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span><span class="o">.</span><span class="n">duration</span></a> <span class="o">+=</span> <span class="mf">0.003</span>
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.set_annotations" title="mne.io.Raw.set_annotations" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_squid</span><span class="o">.</span><span class="n">set_annotations</span></a><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.Annotations.html#mne.Annotations" title="mne.Annotations" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">annot</span></a><span class="p">)</span>
+
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.filter" title="mne.io.Raw.filter" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_squid</span><span class="o">.</span><span class="n">filter</span></a><span class="p">(</span><span class="mf">4.</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.notch_filter" title="mne.io.Raw.notch_filter" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_squid</span><span class="o">.</span><span class="n">notch_filter</span></a><span class="p">(</span><span class="mf">60.</span><span class="p">)</span>
+<a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw.filter" title="mne.io.Raw.filter" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-method"><span class="n">raw_squid</span><span class="o">.</span><span class="n">filter</span></a><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="n">skip_by_annotation</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;BAD_STIM&#39;</span><span class="p">))</span>
+<a href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs" title="mne.Epochs" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">epochs</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs" title="mne.Epochs" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class"><span class="n">mne</span><span class="o">.</span><span class="n">Epochs</span></a><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw" title="mne.io.Raw" class="sphx-glr-backref-module-mne-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">raw_squid</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">events</span></a><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                    <span class="n">reject_by_annotation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray" title="mne.EvokedArray" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">evoked_squid</span></a> <span class="o">=</span> <a href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs.average" title="mne.Epochs.average" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-method"><span class="n">epochs</span><span class="o">.</span><span class="n">average</span></a><span class="p">()</span>
+<a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray.plot" title="mne.EvokedArray.plot" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-method"><span class="n">evoked_squid</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">mag</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)))</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_compare_sef_002.png" srcset="../_images/sphx_glr_plot_compare_sef_002.png" alt="Magnetometers (102 channels)" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Opening raw data file /Users/mainak/Desktop/github_repos/cmeg_coil_design/examples/data/sef_data/sub-01/squid_meg/20240722/RT_median_raw.fif...
+    Read a total of 6 projection items:
+        generated with dossp-2.1 (1 x 306)  idle
+        generated with dossp-2.1 (1 x 306)  idle
+        generated with dossp-2.1 (1 x 306)  idle
+        generated with dossp-2.1 (1 x 306)  idle
+        generated with dossp-2.1 (1 x 306)  idle
+        generated with dossp-2.1 (1 x 306)  idle
+    Range : 45000 ... 543999 =     22.500 ...   272.000 secs
+Ready.
+Reading 0 ... 498999  =      0.000 ...   249.500 secs...
+NOTE: pick_types() is a legacy function. New code should use inst.pick(...).
+496 events found on stim channel STI101
+Event IDs: [1]
+/Users/mainak/Desktop/github_repos/cmeg_coil_design/examples/plot_compare_sef.py:113: RuntimeWarning: Omitted 45 annotation(s) that were outside data range.
+  raw_squid.set_annotations(annot)
+Filtering raw data in 1 contiguous segment
+Setting up high-pass filter at 4 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal highpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 4.00
+- Lower transition bandwidth: 2.00 Hz (-6 dB cutoff frequency: 3.00 Hz)
+- Filter length: 3301 samples (1.651 s)
+
+Filtering raw data in 1 contiguous segment
+Setting up band-stop filter from 59 - 61 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal bandstop filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 59.35
+- Lower transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 59.10 Hz)
+- Upper passband edge: 60.65 Hz
+- Upper transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 60.90 Hz)
+- Filter length: 13201 samples (6.601 s)
+
+Filtering raw data in 452 contiguous segments
+Setting up low-pass filter at 1.5e+02 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal lowpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Upper passband edge: 150.00 Hz
+- Upper transition bandwidth: 37.50 Hz (-6 dB cutoff frequency: 168.75 Hz)
+- Filter length: 177 samples (0.088 s)
+
+Not setting metadata
+496 matching events found
+Setting baseline interval to [-0.2, 0.0] s
+Applying baseline correction (mode: mean)
+Created an SSP operator (subspace dimension = 4)
+6 projection items activated
+
+&lt;Figure size 640x300 with 2 Axes&gt;
+</pre></div>
+</div>
+<p>“Butterfly plots” are not appropriate to compare the
+evoked responses between OPMs and SQUID because the sensor
+locations are not comparable and hide individual sensor time series.</p>
+<p>That is why, we pick sensors in similar locations on the
+OPM-MEG and SQUID-MEG and compare the evoked responses.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">squid_chs</span></a> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MEG0431&#39;</span><span class="p">,</span> <span class="s1">&#39;MEG0311&#39;</span><span class="p">]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">opm_chs</span></a> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MEG30&#39;</span><span class="p">,</span> <span class="s1">&#39;MEG09&#39;</span><span class="p">]</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scale</span></a> <span class="o">=</span> <span class="mf">1e15</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">,</span> <span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">opm_ch</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">squid_ch</span></a><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">opm_chs</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">squid_chs</span></a><span class="p">)):</span>
+    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a> <span class="o">=</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">]</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ln1</span></a> <span class="o">=</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray.times" title="mne.EvokedArray.times" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-property"><span class="n">evoked_opm</span><span class="o">.</span><span class="n">times</span></a> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span>
+                       <a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray.copy" title="mne.EvokedArray.copy" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-method"><span class="n">evoked_opm</span><span class="o">.</span><span class="n">copy</span></a><span class="p">()</span><span class="o">.</span><span class="n">pick</span><span class="p">([</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">opm_ch</span></a><span class="p">])</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scale</span></a><span class="p">,</span>
+                       <span class="s1">&#39;#e66101&#39;</span><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ln2</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="matplotlib.axes.Axes.plot" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray.times" title="mne.EvokedArray.times" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-property"><span class="n">evoked_squid</span><span class="o">.</span><span class="n">times</span></a> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span>
+                  <a href="https://mne.tools/dev/generated/mne.EvokedArray.html#mne.EvokedArray.copy" title="mne.EvokedArray.copy" class="sphx-glr-backref-module-mne sphx-glr-backref-type-py-method"><span class="n">evoked_squid</span><span class="o">.</span><span class="n">copy</span></a><span class="p">()</span><span class="o">.</span><span class="n">pick</span><span class="p">([</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">squid_ch</span></a><span class="p">])</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scale</span></a><span class="p">,</span>
+                  <span class="s1">&#39;#5e3c99&#39;</span><span class="p">)</span>
+    <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Location #</span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ln1</span></a> <span class="o">+</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ln2</span></a><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;OPM&#39;</span><span class="p">,</span> <span class="s1">&#39;SQUID&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend" title="matplotlib.axes.Axes.legend" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">legend</span></a><span class="p">()</span>
+
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.text.html#matplotlib.figure.Figure.text" title="matplotlib.figure.Figure.text" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">text</span></a><span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="s1">&#39;SQUID data (fT)&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+         <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.text.html#matplotlib.figure.Figure.text" title="matplotlib.figure.Figure.text" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">text</span></a><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="s1">&#39;OPM data (fT)&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+         <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.tight_layout.html#matplotlib.pyplot.tight_layout" title="matplotlib.pyplot.tight_layout" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span></a><span class="p">()</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_compare_sef_003.png" srcset="../_images/sphx_glr_plot_compare_sef_003.png" alt="Location #1, Location #2" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 11.586 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-compare-sef-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/e9c300d32a03ab8a3bb55da1eabbfeee/plot_compare_sef.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_compare_sef.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/e0afc96f6f22b8e2a53296d4a8bca006/plot_compare_sef.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_compare_sef.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2023, Mainak Jas.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

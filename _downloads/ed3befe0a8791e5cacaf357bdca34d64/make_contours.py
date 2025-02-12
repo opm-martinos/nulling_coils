@@ -16,10 +16,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from bfieldtools.utils import load_example_mesh
-import pyvista as pv
 
 import opm_coils
 from opm_coils import BiplanarCoil, get_sphere_points, get_target_field
+from opm_coils.shielding import shielded_room
 
 N_suh = 50
 N_contours = 30
@@ -52,11 +52,16 @@ bounds_wholeloop = {'dc_x': False,
                     'gradient_y': True,
                     'gradient_z': False}
 
-pcb_fname = pcb_dir / 'development' / output_dir[target_type] / 'first' / 'coil_template_first.kicad_pcb'
-kicad_header = pcb_dir / 'kicad' / 'headers' / f'kicad_header_{header_type[target_type]}_first_half.txt'
-
 # %%
 # Next we will define the parameters of our coils
+
+standoffs = {"dc_y": 0.1400, "gradient_y": 0.1408,
+             "dc_x": 0.1416, "gradient_x": 0.1424, 
+             "dc_z": 0.1432, "gradient_z": 0.1440}
+
+scaling = {"dc_y": 0.1400, "gradient_y": 0.1420,
+           "dc_x": 0.1420, "gradient_x": 0.1436, 
+           "dc_z": 0.1441, "gradient_z": 0.14565}
 
 trace_width = 5. # mm
 cu_oz = 2. # oz per ft^2
@@ -66,7 +71,7 @@ cu_oz = 2. # oz per ft^2
 # We will scale the mesh so as to achieve the dimensions of
 # 1.4 m x 1.4 m that we will use in our work.
 
-scaling_factor = 0.14
+scaling_factor = scaling[target_type]
 standoff = scaling_factor * 10
 
 planemesh = load_example_mesh("10x10_plane_hires")
@@ -83,32 +88,54 @@ target_field = get_target_field(target_type, target_points)
 
 coil.fit(target_points, target_field)
 
-# %%
-# We discretize the optimized stream function
 coil.discretize(N_contours=N_contours, trace_width=trace_width, cu_oz=cu_oz)
 
 # %%
-# We plot both the optimized continuous stream function and it's discretized
-# counterpart. The camera position is 'xy' for optimal viewing
-plotter = pv.Plotter(window_size=(1500, 1700))
-coil.coil_.s.plot(figure=plotter)
-plotter.camera_position = 'xy'
+# To evaluate the effect of the shielded room, we can add it to the coil
+# specification and it will be taken into account for estimating the
+# magnetic field at any point
+room_dims = (4, 2.3, 3.)
+coil_pos = (1.89, 1.05, 1.6)
+shield_mesh = shielded_room(room_dims=room_dims,
+                            coil_pos=coil_pos)
+coil.add_shield(shield_mesh)
 
-coil.loops_ = [loop for loop in coil.loops_ if loop[0, 2] > 0]  # just one coil
+# %%
+# The field at some target points can be computed by doing
+B_target = coil.predict(target_points)
+
+# %%
+# The field can be computed and plotted by doing
 plotter = coil.plot_field(target_points)
-plotter.camera_position = 'xy'
 
 # %%
 # We can evaluate the coil for metrics such as efficiency
+# and also compute its dimensions by doing
 metrics = coil.evaluate(target_type, target_points, target_field,
                         points_z, 'all')
 print(metrics)
+print(f'The coil has dimensions {coil.shape} m')
 
 # %%
-# Next, we make cuts using the interactive interface
-
-# %%
+# We can now interactively create paths to join the loops in the discretized coils
+# by making "cuts". Uncomment below to use it.
 # coil.make_cuts()
-coil.save(pcb_fname=pcb_fname, kicad_header_fname=kicad_header,
-          bounds=(0,750,0,1500), origin= (0, 750),
-          bounds_wholeloop=bounds_wholeloop[target_type])
+
+# %%
+# Finally, we can export the files to KiCad
+kicad_dir = Path(opm_coils.__path__[0]) / '..' / 'kicad' / 'headers'
+pcb_dir = Path(opm_coils.__path__[0]) / '..' / 'development'
+if header_type[target_type] == 'vert':
+    coil.save(pcb_fname=pcb_dir / f'{output_dir[target_type]}/first/coil_template_first.kicad_pcb',
+        kicad_header_fname=kicad_dir / f'/kicad_header_{header_type[target_type]}_first_half.txt',
+        bounds=(0,750,0,1500), origin= (0, 750), bounds_wholeloop=bounds_wholeloop[target_type])
+    coil.save(pcb_fname=pcb_dir / f'{output_dir[target_type]}/second/coil_template_second.kicad_pcb',
+        kicad_header_fname=kicad_dir / f'kicad_header_{header_type[target_type]}_second_half.txt',
+        bounds=(-750, 750, 0, 1500 ), origin=(750,750), bounds_wholeloop=bounds_wholeloop[target_type])
+else:
+    coil.save(pcb_fname=pcb_dir / f'{output_dir[target_type]}/first/coil_template_first.kicad_pcb',
+        kicad_header_fname=kicad_dir / f'kicad_header_{header_type[target_type]}_first_half.txt',
+        bounds=(-750, 750, 0, 750), origin= (750, 0))
+    coil.save(pcb_fname=pcb_dir / f'{output_dir[target_type]}/second/coil_template_second.kicad_pcb',
+        kicad_header_fname=kicad_dir / f'kicad_header_{header_type[target_type]}_second_half.txt',
+        bounds=(-750, 750, -750, 0), origin=(750, 750))

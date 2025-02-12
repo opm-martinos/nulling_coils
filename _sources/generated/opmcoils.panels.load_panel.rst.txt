@@ -1,0 +1,6 @@
+﻿opmcoils.panels.load\_panel
+===========================
+
+.. currentmodule:: opmcoils.panels
+
+.. autofunction:: load_panel

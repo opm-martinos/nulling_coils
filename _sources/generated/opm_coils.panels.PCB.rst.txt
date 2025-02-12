@@ -1,0 +1,35 @@
+﻿opm\_coils.panels.PCB
+=====================
+
+.. currentmodule:: opm_coils.panels
+
+.. autoclass:: PCB
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PCB.__init__
+      ~PCB.adjust_offset
+      ~PCB.adjust_scale
+      ~PCB.get_chains
+      ~PCB.magnetic_field
+      ~PCB.plot
+      ~PCB.plot2D
+      ~PCB.to_dict
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PCB.length
+   
+   

@@ -1,0 +1,35 @@
+﻿opmcoils.panels.PCBPanel
+========================
+
+.. currentmodule:: opmcoils.panels
+
+.. autoclass:: PCBPanel
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PCBPanel.__init__
+      ~PCBPanel.adjust_standoff
+      ~PCBPanel.build_chains
+      ~PCBPanel.magnetic_field
+      ~PCBPanel.plot
+      ~PCBPanel.plot_profile
+      ~PCBPanel.resistance
+      ~PCBPanel.to_dict
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PCBPanel.length
+   
+   

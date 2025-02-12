@@ -1,0 +1,6 @@
+﻿opmcoils.panels.plot\_combined\_panels
+======================================
+
+.. currentmodule:: opmcoils.panels
+
+.. autofunction:: plot_combined_panels

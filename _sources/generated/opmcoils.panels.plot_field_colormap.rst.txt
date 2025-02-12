@@ -1,0 +1,6 @@
+﻿opmcoils.panels.plot\_field\_colormap
+=====================================
+
+.. currentmodule:: opmcoils.panels
+
+.. autofunction:: plot_field_colormap

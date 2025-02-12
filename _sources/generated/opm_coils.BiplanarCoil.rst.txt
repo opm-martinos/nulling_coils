@@ -14,12 +14,17 @@
    .. autosummary::
    
       ~BiplanarCoil.__init__
+      ~BiplanarCoil.add_shield
       ~BiplanarCoil.discretize
       ~BiplanarCoil.evaluate
       ~BiplanarCoil.fit
       ~BiplanarCoil.make_cuts
+      ~BiplanarCoil.plot
+      ~BiplanarCoil.plot_coil
       ~BiplanarCoil.plot_field
+      ~BiplanarCoil.plot_field_2D
       ~BiplanarCoil.predict
+      ~BiplanarCoil.remove_shield
       ~BiplanarCoil.save
    
    
@@ -33,5 +38,6 @@
       ~BiplanarCoil.inductance
       ~BiplanarCoil.length
       ~BiplanarCoil.resistance
+      ~BiplanarCoil.shape
    
    

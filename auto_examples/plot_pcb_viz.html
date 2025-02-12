@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>05. Compute and visualize magnetic field from PCB &#8212; opmcoils  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=9afac83c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          opmcoils</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../assembly.html">Assembly</a></li>
+                <li><a href="https://github.com/opm-martinos/cmeg_coil_design">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">05. Compute and visualize magnetic field from PCB</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/auto_examples/plot_pcb_viz.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-pcb-viz-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="compute-and-visualize-magnetic-field-from-pcb">
+<span id="sphx-glr-auto-examples-plot-pcb-viz-py"></span><h1>05. Compute and visualize magnetic field from PCB<a class="headerlink" href="#compute-and-visualize-magnetic-field-from-pcb" title="Link to this heading">¶</a></h1>
+<p>Example demonstrating how to load the PCB from HDF5 files
+which includes the connection information between wire segments
+and how to visualize the field due to them.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Mainak Jas &lt;mjas@mgh.harvard.edu&gt;</span>
+<span class="c1">#          Gabriel Motta &lt;gabrielbenmotta@gmail.com&gt;</span>
+
+<span class="c1"># sphinx_gallery_thumbnail_number = 7</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">h5io</span>
+
+<span class="kn">from</span> <span class="nn">opmcoils.panels</span> <span class="kn">import</span> <span class="n">PCBPanel</span><span class="p">,</span> <span class="n">plot_panel</span>
+</pre></div>
+</div>
+<p>Let us first load the nulling coils</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">hardware_folder</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.cwd" title="pathlib.Path.cwd" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span></a><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;hardware&#39;</span> <span class="o">/</span> <span class="s1">&#39;hdf5&#39;</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels_data</span></a> <span class="o">=</span> <span class="n">h5io</span><span class="o">.</span><span class="n">read_hdf5</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">hardware_folder</span></a> <span class="o">/</span> <span class="s1">&#39;panels.hdf5&#39;</span><span class="p">)</span>
+<span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">key</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pan</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels_data</span></a><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">key</span></a><span class="p">]</span> <span class="o">=</span> <span class="n">PCBPanel</span><span class="p">(</span><span class="n">panel_dict</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pan</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can plot each of the coils</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current</span></a> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+<span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;G&#39;</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a><span class="p">:</span>
+        <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current</span></a><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-3</span>
+    <span class="k">else</span><span class="p">:</span>
+        <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current</span></a><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e-3</span>
+
+    <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axis</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axis</span></a> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+        <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current</span></a><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1.</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Length and resistance of the panel </span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a><span class="si">}</span><span class="s1"> is&#39;</span>
+          <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a><span class="p">]</span><span class="o">.</span><span class="n">length</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> m and &#39;</span>
+          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a><span class="p">]</span><span class="o">.</span><span class="n">resistance</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> Ohm&#39;</span><span class="p">)</span>
+    <span class="n">plot_panel</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a><span class="p">],</span> <span class="mf">.7</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axis</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axis</span></a><span class="p">,</span>
+               <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panel_name</span></a><span class="si">}</span><span class="s1"> Panels&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../_images/sphx_glr_plot_pcb_viz_001.png" srcset="../_images/sphx_glr_plot_pcb_viz_001.png" alt="Bx Panels" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_pcb_viz_002.png" srcset="../_images/sphx_glr_plot_pcb_viz_002.png" alt="By Panels" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_pcb_viz_003.png" srcset="../_images/sphx_glr_plot_pcb_viz_003.png" alt="Bz Panels" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_pcb_viz_004.png" srcset="../_images/sphx_glr_plot_pcb_viz_004.png" alt="Gx Panels" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_pcb_viz_005.png" srcset="../_images/sphx_glr_plot_pcb_viz_005.png" alt="Gy Panels" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_pcb_viz_006.png" srcset="../_images/sphx_glr_plot_pcb_viz_006.png" alt="Gz Panels" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Length and resistance of the panel Bx is 236.49 m and 11.62 Ohm
+Length and resistance of the panel By is 232.18 m and 11.41 Ohm
+Length and resistance of the panel Bz is 170.56 m and 8.38 Ohm
+Length and resistance of the panel Gx is 164.87 m and 8.10 Ohm
+Length and resistance of the panel Gy is 163.26 m and 8.02 Ohm
+Length and resistance of the panel Gz is 114.64 m and 5.63 Ohm
+</pre></div>
+</div>
+<p>We can also compute the combined field due to several nulling coils</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opmcoils</span> <span class="kn">import</span> <span class="n">get_sphere_points</span>
+<span class="kn">from</span> <span class="nn">opmcoils.panels</span> <span class="kn">import</span> <span class="n">combined_panel_field</span>
+
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">_</span></a> <span class="o">=</span> <span class="n">get_sphere_points</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sidelength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">[</span><span class="s1">&#39;By&#39;</span><span class="p">],</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">[</span><span class="s1">&#39;Bx&#39;</span><span class="p">],</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">[</span><span class="s1">&#39;Bz&#39;</span><span class="p">]]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">currents</span></a> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=-</span><span class="mf">1e-3</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">.2e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">.2e-3</span><span class="p">)]</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">field</span></a> <span class="o">=</span> <span class="n">combined_panel_field</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">currents</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">field</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.24868485e-09 1.49751433e-09 1.46098810e-09]
+ [1.26105274e-09 1.48749325e-09 1.42440595e-09]
+ [1.29909885e-09 1.48197162e-09 1.42632374e-09]
+ [1.32167942e-09 1.47752131e-09 1.47299832e-09]
+ [1.26151474e-09 1.45858197e-09 1.45140685e-09]
+ [1.27444156e-09 1.45340990e-09 1.42030615e-09]
+ [1.31139839e-09 1.45177814e-09 1.42428863e-09]
+ [1.33478647e-09 1.45222516e-09 1.47170742e-09]
+ [1.30036874e-09 1.45946999e-09 1.44576793e-09]
+ [1.31309733e-09 1.45610016e-09 1.41883119e-09]
+ [1.35006471e-09 1.45688567e-09 1.42576480e-09]
+ [1.37365963e-09 1.46325483e-09 1.47740596e-09]
+ [1.32266443e-09 1.50623394e-09 1.44151032e-09]
+ [1.33737357e-09 1.50407138e-09 1.41887293e-09]
+ [1.37543905e-09 1.50873525e-09 1.43189386e-09]
+ [1.39568261e-09 1.52361757e-09 1.49267135e-09]
+ [1.32727063e-09 1.47418402e-09 1.44994025e-09]
+ [1.31727394e-09 1.46775248e-09 1.44482201e-09]
+ [1.31967429e-09 1.46201669e-09 1.44800405e-09]
+ [1.31110032e-09 1.45707080e-09 1.46545039e-09]
+ [1.32635158e-09 1.48776688e-09 1.43568334e-09]
+ [1.29547673e-09 1.48090746e-09 1.44417923e-09]
+ [1.29177048e-09 1.47508109e-09 1.43989906e-09]
+ [1.29805437e-09 1.47096198e-09 1.44418442e-09]
+ [1.29257986e-09 1.46803592e-09 1.46210679e-09]
+ [1.25424728e-09 1.46554486e-09 1.48251966e-09]
+ [1.31573889e-09 1.48082933e-09 1.42998876e-09]
+ [1.29142990e-09 1.47487534e-09 1.43911380e-09]
+ [1.29070553e-09 1.47088397e-09 1.43668938e-09]
+ [1.29824085e-09 1.46915249e-09 1.44261805e-09]
+ [1.29340073e-09 1.46939361e-09 1.46164442e-09]
+ [1.25470360e-09 1.47110767e-09 1.48244985e-09]
+ [1.31778190e-09 1.48229091e-09 1.42510322e-09]
+ [1.29770196e-09 1.47785764e-09 1.43561485e-09]
+ [1.29848286e-09 1.47564733e-09 1.43546940e-09]
+ [1.30601337e-09 1.47635766e-09 1.44380793e-09]
+ [1.29965267e-09 1.48026639e-09 1.46514354e-09]
+ [1.25669583e-09 1.48686598e-09 1.48738855e-09]
+ [1.30906437e-09 1.49821483e-09 1.42152431e-09]
+ [1.29215732e-09 1.49499756e-09 1.43349265e-09]
+ [1.29387060e-09 1.49426171e-09 1.43608357e-09]
+ [1.30013524e-09 1.49734374e-09 1.44792348e-09]
+ [1.28918693e-09 1.50474684e-09 1.47280018e-09]
+ [1.23678992e-09 1.51520369e-09 1.49683122e-09]
+ [1.25363065e-09 1.51496991e-09 1.43223466e-09]
+ [1.25505445e-09 1.51512337e-09 1.43823331e-09]
+ [1.25740943e-09 1.51978937e-09 1.45450020e-09]
+ [1.23730196e-09 1.52886009e-09 1.48318044e-09]
+ [1.28398551e-09 1.44974053e-09 1.43724290e-09]
+ [1.28408881e-09 1.44874314e-09 1.44354595e-09]
+ [1.28211158e-09 1.44703525e-09 1.44451901e-09]
+ [1.27102337e-09 1.44555143e-09 1.44446436e-09]
+ [1.28324971e-09 1.47474070e-09 1.41162836e-09]
+ [1.28386358e-09 1.47312538e-09 1.43662626e-09]
+ [1.28573517e-09 1.47025667e-09 1.44195077e-09]
+ [1.28531493e-09 1.46787442e-09 1.44324199e-09]
+ [1.27591277e-09 1.46630083e-09 1.44346763e-09]
+ [1.24952193e-09 1.46477773e-09 1.43300013e-09]
+ [1.28280828e-09 1.47929713e-09 1.41158059e-09]
+ [1.28524848e-09 1.47689644e-09 1.43461025e-09]
+ [1.28811449e-09 1.47441040e-09 1.44016816e-09]
+ [1.28832223e-09 1.47306236e-09 1.44242690e-09]
+ [1.27942602e-09 1.47291391e-09 1.44327645e-09]
+ [1.25326141e-09 1.47300570e-09 1.43207851e-09]
+ [1.28054314e-09 1.47860387e-09 1.41090936e-09]
+ [1.28460526e-09 1.47689272e-09 1.43305377e-09]
+ [1.28814978e-09 1.47561164e-09 1.43944118e-09]
+ [1.28834892e-09 1.47578986e-09 1.44304350e-09]
+ [1.27875478e-09 1.47737454e-09 1.44474111e-09]
+ [1.25094299e-09 1.47909381e-09 1.43269084e-09]
+ [1.26943879e-09 1.47711174e-09 1.41073706e-09]
+ [1.27517597e-09 1.47617491e-09 1.43242888e-09]
+ [1.27927671e-09 1.47583471e-09 1.43989099e-09]
+ [1.27882870e-09 1.47702944e-09 1.44498638e-09]
+ [1.26713584e-09 1.47944494e-09 1.44740138e-09]
+ [1.23554418e-09 1.48118150e-09 1.43371955e-09]
+ [1.24889601e-09 1.46513710e-09 1.43205871e-09]
+ [1.25321051e-09 1.46437640e-09 1.44061707e-09]
+ [1.25118150e-09 1.46486221e-09 1.44696774e-09]
+ [1.23577024e-09 1.46566673e-09 1.44924316e-09]
+ [1.23659727e-09 1.47215748e-09 1.45012246e-09]
+ [1.25235081e-09 1.47001848e-09 1.44776756e-09]
+ [1.25470242e-09 1.46823392e-09 1.44127234e-09]
+ [1.25068825e-09 1.46774739e-09 1.43256245e-09]
+ [1.23596093e-09 1.48716323e-09 1.43441072e-09]
+ [1.26789786e-09 1.48415776e-09 1.44812247e-09]
+ [1.27992987e-09 1.48046787e-09 1.44564923e-09]
+ [1.28069945e-09 1.47801169e-09 1.44044536e-09]
+ [1.27690414e-09 1.47711975e-09 1.43287754e-09]
+ [1.27146595e-09 1.47687052e-09 1.41112518e-09]
+ [1.25121256e-09 1.48308109e-09 1.43322892e-09]
+ [1.27936698e-09 1.48015737e-09 1.44529480e-09]
+ [1.28929671e-09 1.47734222e-09 1.44354215e-09]
+ [1.28941793e-09 1.47592341e-09 1.43985228e-09]
+ [1.28618329e-09 1.47597017e-09 1.43339476e-09]
+ [1.28243295e-09 1.47647271e-09 1.41123341e-09]
+ [1.25330628e-09 1.47499016e-09 1.43249381e-09]
+ [1.27981223e-09 1.47373968e-09 1.44367657e-09]
+ [1.28904263e-09 1.47268316e-09 1.44275580e-09]
+ [1.28915604e-09 1.47279315e-09 1.44041087e-09]
+ [1.28660494e-09 1.47402410e-09 1.43480090e-09]
+ [1.28448695e-09 1.47517413e-09 1.41178475e-09]
+ [1.24929112e-09 1.46489359e-09 1.43333554e-09]
+ [1.27602587e-09 1.46528394e-09 1.44374717e-09]
+ [1.28576497e-09 1.46565884e-09 1.44341843e-09]
+ [1.28651029e-09 1.46678667e-09 1.44202285e-09]
+ [1.28495902e-09 1.46836049e-09 1.43664337e-09]
+ [1.28467380e-09 1.46866372e-09 1.41167017e-09]
+ [1.27086260e-09 1.44292167e-09 1.44466489e-09]
+ [1.28229484e-09 1.44319398e-09 1.44457587e-09]
+ [1.28460322e-09 1.44361297e-09 1.44346522e-09]
+ [1.28482399e-09 1.44325828e-09 1.43708507e-09]
+ [1.23988213e-09 1.53558302e-09 1.48492418e-09]
+ [1.26036934e-09 1.52518758e-09 1.45613110e-09]
+ [1.25833267e-09 1.51921086e-09 1.43965727e-09]
+ [1.25715910e-09 1.51777639e-09 1.43344665e-09]
+ [1.23911917e-09 1.52126290e-09 1.49834545e-09]
+ [1.29190096e-09 1.50957238e-09 1.47436318e-09]
+ [1.30322009e-09 1.50091433e-09 1.44940356e-09]
+ [1.29727129e-09 1.49656451e-09 1.43740928e-09]
+ [1.29582040e-09 1.49603516e-09 1.43467528e-09]
+ [1.31297546e-09 1.49801437e-09 1.42263144e-09]
+ [1.25898559e-09 1.49077294e-09 1.48872122e-09]
+ [1.30232218e-09 1.48301554e-09 1.46650271e-09]
+ [1.30904596e-09 1.47790437e-09 1.44508852e-09]
+ [1.30182685e-09 1.47595339e-09 1.43662687e-09]
+ [1.30131550e-09 1.47689936e-09 1.43668323e-09]
+ [1.32167100e-09 1.48006992e-09 1.42616222e-09]
+ [1.25673071e-09 1.47286516e-09 1.48363430e-09]
+ [1.29581040e-09 1.47004987e-09 1.46281071e-09]
+ [1.30101103e-09 1.46863947e-09 1.44368431e-09]
+ [1.29378607e-09 1.46913901e-09 1.43763735e-09]
+ [1.29478742e-09 1.47184905e-09 1.44000102e-09]
+ [1.31939312e-09 1.47649639e-09 1.43091048e-09]
+ [1.25581265e-09 1.46534774e-09 1.48360712e-09]
+ [1.29454379e-09 1.46677389e-09 1.46312070e-09]
+ [1.30038721e-09 1.46854388e-09 1.44505761e-09]
+ [1.29442088e-09 1.47141915e-09 1.44063269e-09]
+ [1.29841432e-09 1.47592562e-09 1.44484906e-09]
+ [1.32959972e-09 1.48141239e-09 1.43639943e-09]
+ [1.31252946e-09 1.45420733e-09 1.46636539e-09]
+ [1.32149499e-09 1.45798890e-09 1.44872823e-09]
+ [1.31942801e-09 1.46244740e-09 1.44536430e-09]
+ [1.32972157e-09 1.46749871e-09 1.45038605e-09]
+ [1.40054572e-09 1.52877011e-09 1.49524210e-09]
+ [1.38075103e-09 1.51266404e-09 1.43431919e-09]
+ [1.34299578e-09 1.50672679e-09 1.42102842e-09]
+ [1.32846495e-09 1.50757934e-09 1.44343931e-09]
+ [1.37863262e-09 1.46603758e-09 1.47967302e-09]
+ [1.35546565e-09 1.45850863e-09 1.42789095e-09]
+ [1.31878605e-09 1.45648670e-09 1.42073733e-09]
+ [1.30622830e-09 1.45855389e-09 1.44754225e-09]
+ [1.33944246e-09 1.45259732e-09 1.47368553e-09]
+ [1.31646457e-09 1.45103094e-09 1.42608839e-09]
+ [1.27977950e-09 1.45144489e-09 1.42189683e-09]
+ [1.26702465e-09 1.45530847e-09 1.45291906e-09]
+ [1.32561857e-09 1.47577227e-09 1.47476129e-09]
+ [1.30344958e-09 1.47912610e-09 1.42784376e-09]
+ [1.26568046e-09 1.48342534e-09 1.42568983e-09]
+ [1.25350405e-09 1.49210325e-09 1.46219303e-09]]
+</pre></div>
+</div>
+<p>Finally, we can plot the combined panels and their resulting field</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opmcoils.panels</span> <span class="kn">import</span> <span class="n">plot_combined_panels</span>
+
+<span class="n">plot_combined_panels</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">panels</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">currents</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_pcb_viz_007.png" srcset="../_images/sphx_glr_plot_pcb_viz_007.png" alt="plot pcb viz" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 24.480 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-pcb-viz-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/917c43425048dba045ef61789fd82fc7/plot_pcb_viz.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_pcb_viz.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9b93296e8054286a0465065bf8321384/plot_pcb_viz.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_pcb_viz.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2023, Mainak Jas.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

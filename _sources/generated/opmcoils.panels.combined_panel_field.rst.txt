@@ -1,0 +1,6 @@
+﻿opmcoils.panels.combined\_panel\_field
+======================================
+
+.. currentmodule:: opmcoils.panels
+
+.. autofunction:: combined_panel_field

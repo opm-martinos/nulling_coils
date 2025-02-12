@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>opmcoils.panels.PCBPanel &#8212; opmcoils  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=9afac83c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=fd10adb8"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          opmcoils</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../auto_examples/index.html">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../assembly.html">Assembly</a></li>
+                <li><a href="https://github.com/opm-martinos/cmeg_coil_design">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">opmcoils.panels.PCBPanel</a><ul>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel"><code class="docutils literal notranslate"><span class="pre">PCBPanel</span></code></a><ul>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.__init__"><code class="docutils literal notranslate"><span class="pre">PCBPanel.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.adjust_standoff"><code class="docutils literal notranslate"><span class="pre">PCBPanel.adjust_standoff()</span></code></a></li>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.build_chains"><code class="docutils literal notranslate"><span class="pre">PCBPanel.build_chains()</span></code></a></li>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.length"><code class="docutils literal notranslate"><span class="pre">PCBPanel.length</span></code></a></li>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.magnetic_field"><code class="docutils literal notranslate"><span class="pre">PCBPanel.magnetic_field()</span></code></a></li>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.plot"><code class="docutils literal notranslate"><span class="pre">PCBPanel.plot()</span></code></a></li>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.plot_profile"><code class="docutils literal notranslate"><span class="pre">PCBPanel.plot_profile()</span></code></a></li>
+<li><a class="reference internal" href="#opmcoils.panels.PCBPanel.resistance"><code class="docutils literal notranslate"><span class="pre">PCBPanel.resistance()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/generated/opmcoils.panels.PCBPanel.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="opmcoils-panels-pcbpanel">
+<h1>opmcoils.panels.PCBPanel<a class="headerlink" href="#opmcoils-panels-pcbpanel" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opmcoils.panels.</span></span><span class="sig-name descname"><span class="pre">PCBPanel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pcb_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">half_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rearrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="#opmcoils.panels.PCBPanel.length" title="opmcoils.panels.PCBPanel.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></a></dt><dd><p>The total length of the panel.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.adjust_standoff" title="opmcoils.panels.PCBPanel.adjust_standoff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjust_standoff</span></code></a>(standoff)</p></td>
+<td><p>Adjust the standoff.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.build_chains" title="opmcoils.panels.PCBPanel.build_chains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_chains</span></code></a>()</p></td>
+<td><p>Link PCBs into continuous loops.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.magnetic_field" title="opmcoils.panels.PCBPanel.magnetic_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnetic_field</span></code></a>(target_points, current)</p></td>
+<td><p>Calculate total magnetic field from panel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.plot" title="opmcoils.panels.PCBPanel.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([target_points, current, pl, show])</p></td>
+<td><p>Plot the PCBs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.plot_profile" title="opmcoils.panels.PCBPanel.plot_profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_profile</span></code></a>(current[, profile_dir, ...])</p></td>
+<td><p>Plot line profile for panel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.resistance" title="opmcoils.panels.PCBPanel.resistance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resistance</span></code></a>([cu_oz, trace_width])</p></td>
+<td><p>The coil resistance.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>to_dict</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pcb_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">half_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rearrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>A Panel is a collection of PCBs used to null one field component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pcb_folder</strong><span class="classifier">str</span></dt><dd><p>The path to the kicad folder with the PCB design.</p>
+</dd>
+<dt><strong>half_names</strong><span class="classifier">list of str</span></dt><dd><p>The names of the halves used for folder naming. E.g.,
+[‘top’, ‘bott’]</p>
+</dd>
+<dt><strong>standoff</strong><span class="classifier">float</span></dt><dd><p>The standoff between the two biplanar PCBs. Typically,
+this is equal to the length of the PCBs, i.e., 1.4 m.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>pcbs</strong><span class="classifier">dict of PCB</span></dt><dd><p>keys of dictionary can be ‘left_top’, ‘left_bott’,
+‘right_top’, ‘right_bott’ etc.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.__init__" title="opmcoils.panels.PCBPanel.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([pcb_folder, half_names, standoff, ...])</p></td>
+<td><p>A Panel is a collection of PCBs used to null one field component.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.adjust_standoff" title="opmcoils.panels.PCBPanel.adjust_standoff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjust_standoff</span></code></a>(standoff)</p></td>
+<td><p>Adjust the standoff.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.build_chains" title="opmcoils.panels.PCBPanel.build_chains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_chains</span></code></a>()</p></td>
+<td><p>Link PCBs into continuous loops.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.magnetic_field" title="opmcoils.panels.PCBPanel.magnetic_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnetic_field</span></code></a>(target_points, current)</p></td>
+<td><p>Calculate total magnetic field from panel.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.plot" title="opmcoils.panels.PCBPanel.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([target_points, current, pl, show])</p></td>
+<td><p>Plot the PCBs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.plot_profile" title="opmcoils.panels.PCBPanel.plot_profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_profile</span></code></a>(current[, profile_dir, ...])</p></td>
+<td><p>Plot line profile for panel.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.resistance" title="opmcoils.panels.PCBPanel.resistance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resistance</span></code></a>([cu_oz, trace_width])</p></td>
+<td><p>The coil resistance.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#opmcoils.panels.PCBPanel.length" title="opmcoils.panels.PCBPanel.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></a></p></td>
+<td><p>The total length of the panel.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.adjust_standoff">
+<span class="sig-name descname"><span class="pre">adjust_standoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">standoff</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel.adjust_standoff" title="Link to this definition">¶</a></dt>
+<dd><p>Adjust the standoff.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>standoff</strong><span class="classifier">float</span></dt><dd><p>The new standoff distance (in m).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.build_chains">
+<span class="sig-name descname"><span class="pre">build_chains</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel.build_chains" title="Link to this definition">¶</a></dt>
+<dd><p>Link PCBs into continuous loops.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#opmcoils.panels.PCBPanel.length" title="Link to this definition">¶</a></dt>
+<dd><p>The total length of the panel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.magnetic_field">
+<span class="sig-name descname"><span class="pre">magnetic_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel.magnetic_field" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate total magnetic field from panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>current</strong><span class="classifier">dict</span></dt><dd><p>The current.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel.plot" title="Link to this definition">¶</a></dt>
+<dd><p>Plot the PCBs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.plot_profile">
+<span class="sig-name descname"><span class="pre">plot_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_component</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel.plot_profile" title="Link to this definition">¶</a></dt>
+<dd><p>Plot line profile for panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>current</strong><span class="classifier">dict of floats</span></dt><dd><p>current to be applied to the panel.</p>
+</dd>
+<dt><strong>profile_dir</strong><span class="classifier">string (‘x’, ‘y’, or ‘z’)</span></dt><dd><p>axis along which the field will plotted.</p>
+</dd>
+<dt><strong>field_component</strong><span class="classifier">string (‘x’, ‘y’, or ‘z’)</span></dt><dd><p>axis of field to be plotted.</p>
+</dd>
+<dt><strong>spacing</strong><span class="classifier">float</span></dt><dd><p>distance between points</p>
+</dd>
+<dt><strong>min_pos</strong><span class="classifier">float</span></dt><dd><p>negative disctance from (0,0) in meters</p>
+</dd>
+<dt><strong>max_pos</strong><span class="classifier">float</span></dt><dd><p>positive disctance from (0,0) in meters</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">Axes</span></dt><dd><p>matplotlib axes on which to create the plot</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opmcoils.panels.PCBPanel.resistance">
+<span class="sig-name descname"><span class="pre">resistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cu_oz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opmcoils.panels.PCBPanel.resistance" title="Link to this definition">¶</a></dt>
+<dd><p>The coil resistance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2023, Mainak Jas.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
