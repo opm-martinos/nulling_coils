@@ -1,0 +1,1073 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>opmcoils.biplanar_coil &#8212; opmcoils  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/opmcoils/biplanar_coil';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">opmcoils</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Example gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/opm-martinos/opm_coils/tree/main/hardware">
+    PCB design files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../assembly.html">
+    Coil assembly
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/opm-martinos/opm_coils" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Example gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/opm-martinos/opm_coils/tree/main/hardware">
+    PCB design files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../assembly.html">
+    Coil assembly
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/opm-martinos/opm_coils" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">opmcoils.biplanar_coil</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for opmcoils.biplanar_coil</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Optimize biplanar coils.&quot;&quot;&quot;</span>
+
+<span class="c1"># Authors: Mainak Jas &lt;mjas@mgh.harvard.edu&gt;</span>
+<span class="c1">#          Padma Sundaram</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csr_matrix</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">block_diag</span>
+
+<span class="kn">import</span> <span class="nn">trimesh</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">bfieldtools</span> <span class="kn">import</span> <span class="n">sphtools</span>
+<span class="kn">from</span> <span class="nn">bfieldtools.mesh_conductor</span> <span class="kn">import</span> <span class="n">MeshConductor</span>
+<span class="kn">from</span> <span class="nn">bfieldtools.utils</span> <span class="kn">import</span> <span class="n">combine_meshes</span><span class="p">,</span> <span class="n">load_example_mesh</span>
+<span class="kn">from</span> <span class="nn">bfieldtools.coil_optimize</span> <span class="kn">import</span> <span class="n">optimize_streamfunctions</span>
+<span class="kn">from</span> <span class="nn">bfieldtools.contour</span> <span class="kn">import</span> <span class="n">scalar_contour</span>
+<span class="kn">from</span> <span class="nn">bfieldtools.line_conductor</span> <span class="kn">import</span> <span class="n">LineConductor</span>
+
+<span class="kn">from</span> <span class="nn">bfieldtools.viz</span> <span class="kn">import</span> <span class="n">plot_3d_current_loops</span>
+
+<span class="kn">from</span> <span class="nn">.metrics</span> <span class="kn">import</span> <span class="n">homogeneity</span><span class="p">,</span> <span class="n">efficiency</span><span class="p">,</span> <span class="n">error</span>
+<span class="kn">from</span> <span class="nn">.line_drawer</span> <span class="kn">import</span> <span class="n">LineDrawer</span>
+<span class="kn">from</span> <span class="nn">.file_io</span> <span class="kn">import</span> <span class="n">get_loop_colors</span><span class="p">,</span> <span class="n">export_to_kicad</span><span class="p">,</span> <span class="n">_check_bounds</span>
+<span class="kn">from</span> <span class="nn">.make_pcb</span> <span class="kn">import</span> <span class="n">join_loops_at_cuts</span>
+
+
+<span class="k">def</span> <span class="nf">trimesh_to_pv</span><span class="p">(</span><span class="n">mesh</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pv</span><span class="o">.</span><span class="n">PolyData</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span>
+                       <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">faces</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="n">mesh</span><span class="o">.</span><span class="n">faces</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">mesh_to_coil</span><span class="p">(</span><span class="n">planemesh</span><span class="p">,</span> <span class="n">N_suh</span><span class="p">,</span> <span class="n">standoff</span><span class="p">,</span> <span class="n">center_offset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create biplanar coil for optimization.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Create coil plane pairs</span>
+    <span class="n">coil_plus</span> <span class="o">=</span> <span class="n">trimesh</span><span class="o">.</span><span class="n">Trimesh</span><span class="p">(</span>
+        <span class="n">planemesh</span><span class="o">.</span><span class="n">vertices</span> <span class="o">+</span> <span class="n">center_offset</span> <span class="o">+</span> <span class="n">standoff</span><span class="p">,</span> <span class="n">planemesh</span><span class="o">.</span><span class="n">faces</span><span class="p">,</span>
+        <span class="n">process</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="n">coil_minus</span> <span class="o">=</span> <span class="n">trimesh</span><span class="o">.</span><span class="n">Trimesh</span><span class="p">(</span>
+        <span class="n">planemesh</span><span class="o">.</span><span class="n">vertices</span> <span class="o">+</span> <span class="n">center_offset</span> <span class="o">-</span> <span class="n">standoff</span><span class="p">,</span> <span class="n">planemesh</span><span class="o">.</span><span class="n">faces</span><span class="p">,</span>
+        <span class="n">process</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="n">joined_planes</span> <span class="o">=</span> <span class="n">combine_meshes</span><span class="p">((</span><span class="n">coil_plus</span><span class="p">,</span> <span class="n">coil_minus</span><span class="p">))</span>
+
+    <span class="c1"># Create separate surface harmonic bases for the planes</span>
+    <span class="n">coil_plus_C</span> <span class="o">=</span> <span class="n">MeshConductor</span><span class="p">(</span><span class="n">mesh_obj</span><span class="o">=</span><span class="n">coil_plus</span><span class="p">,</span> <span class="n">basis_name</span><span class="o">=</span><span class="s1">&#39;suh&#39;</span><span class="p">,</span>
+                                <span class="n">N_suh</span><span class="o">=</span><span class="n">N_suh</span><span class="p">,</span> <span class="n">process</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#Change the number 300 as desired</span>
+    <span class="n">coil_minus_C</span> <span class="o">=</span> <span class="n">MeshConductor</span><span class="p">(</span><span class="n">mesh_obj</span><span class="o">=</span><span class="n">coil_minus</span><span class="p">,</span> <span class="n">basis_name</span><span class="o">=</span><span class="s1">&#39;suh&#39;</span><span class="p">,</span>
+                                 <span class="n">N_suh</span><span class="o">=</span><span class="n">N_suh</span><span class="p">,</span> <span class="n">process</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Combine the separate bases stacked &quot;on top of each other&quot;</span>
+    <span class="n">stacked_basis</span> <span class="o">=</span> <span class="n">block_diag</span><span class="p">(</span><span class="n">coil_plus_C</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span> <span class="n">coil_minus_C</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+
+    <span class="c1"># Combine the basis transformation matrices</span>
+    <span class="n">stacked_inner2vert</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">(</span><span class="n">block_diag</span><span class="p">(</span><span class="n">coil_plus_C</span><span class="o">.</span><span class="n">inner2vert</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span>
+                                               <span class="n">coil_minus_C</span><span class="o">.</span><span class="n">inner2vert</span><span class="o">.</span><span class="n">toarray</span><span class="p">()))</span>
+    <span class="n">stacked_vert2inner</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">(</span><span class="n">block_diag</span><span class="p">(</span><span class="n">coil_plus_C</span><span class="o">.</span><span class="n">vert2inner</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span>
+                                               <span class="n">coil_minus_C</span><span class="o">.</span><span class="n">vert2inner</span><span class="o">.</span><span class="n">toarray</span><span class="p">()))</span>
+
+    <span class="c1"># Create a MeshConductor with both planes but a &quot;dummy&quot; basis choice</span>
+    <span class="n">coil</span> <span class="o">=</span> <span class="n">MeshConductor</span><span class="p">(</span><span class="n">mesh_obj</span><span class="o">=</span><span class="n">joined_planes</span><span class="p">,</span>
+                         <span class="n">basis_name</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">N_suh</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                         <span class="n">process</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#Number of harmonics not important here, will not be used</span>
+
+    <span class="c1"># Overwrite dummy basis with stacked basis</span>
+    <span class="n">coil</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="n">stacked_basis</span>
+    <span class="n">coil</span><span class="o">.</span><span class="n">inner2vert</span> <span class="o">=</span> <span class="n">stacked_inner2vert</span>
+    <span class="n">coil</span><span class="o">.</span><span class="n">vert2inner</span> <span class="o">=</span> <span class="n">stacked_vert2inner</span>
+
+    <span class="k">return</span> <span class="n">coil</span>
+
+<div class="viewcode-block" id="get_sphere_points">
+<a class="viewcode-back" href="../../generated/opmcoils.get_sphere_points.html#opmcoils.get_sphere_points">[docs]</a>
+<span class="k">def</span> <span class="nf">get_sphere_points</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sidelength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+
+    <span class="c1">#%%</span>
+
+    <span class="c1"># Set up target and stray field points</span>
+    <span class="c1"># Here, the target points are on a volumetric grid within a sphere</span>
+
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;ij&quot;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="n">target_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">axis_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">yy</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="n">target_points_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">axis_points</span><span class="p">,</span> <span class="n">axis_points</span><span class="p">,</span> <span class="n">zz</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]]</span>
+
+    <span class="c1"># Turn cube into sphere by rejecting points &quot;in the corners&quot;</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">target_points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">target_points</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">target_points</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">center</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">target_points_z</span></div>
+
+
+<span class="k">def</span> <span class="nf">get_2D_point_grid</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sidelength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sidelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;ij&quot;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="n">target_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="c1"># axis_points = np.zeros_like(yy)[:, None]</span>
+    <span class="c1">#</span>
+    <span class="c1"># target_points_z = np.c_[axis_points, axis_points, zz[:, None]]</span>
+    <span class="c1">#</span>
+    <span class="c1"># Turn cube into sphere by rejecting points &quot;in the corners&quot;</span>
+    <span class="n">target_points</span> <span class="o">+=</span> <span class="n">center</span>
+
+    <span class="k">return</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">xx</span>
+
+<div class="viewcode-block" id="get_target_field">
+<a class="viewcode-back" href="../../generated/opmcoils.get_target_field.html#opmcoils.get_target_field">[docs]</a>
+<span class="k">def</span> <span class="nf">get_target_field</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">lmax</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set field in target region using spherical harmonics.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    target_type : str</span>
+<span class="sd">        &#39;gradient_x&#39;, &#39;gradient_y&#39; etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">alm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">lmax</span> <span class="o">*</span> <span class="p">(</span><span class="n">lmax</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),))</span>
+    <span class="n">blm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">lmax</span> <span class="o">*</span> <span class="p">(</span><span class="n">lmax</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),))</span>
+
+    <span class="c1"># Define target field</span>
+    <span class="k">if</span> <span class="s1">&#39;gradient&#39;</span> <span class="ow">in</span> <span class="n">target_type</span><span class="p">:</span>
+
+        <span class="c1"># see Brookes (2018)</span>
+        <span class="k">if</span> <span class="n">target_type</span> <span class="o">==</span> <span class="s1">&#39;gradient_x&#39;</span><span class="p">:</span>
+            <span class="n">blm</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># dBx/dz = dBz/dx (l=2, m=-1)</span>
+        <span class="k">elif</span> <span class="n">target_type</span> <span class="o">==</span> <span class="s1">&#39;gradient_y&#39;</span><span class="p">:</span>
+            <span class="n">blm</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># dBy/dz = dBz/dy (l=2, m=1)</span>
+        <span class="k">elif</span> <span class="n">target_type</span> <span class="o">==</span> <span class="s1">&#39;gradient_z&#39;</span><span class="p">:</span>
+            <span class="n">blm</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># dBz/dz = -dBx/dx = -2dBy/dy (l=2, m=0)</span>
+
+        <span class="n">sphfield</span> <span class="o">=</span> <span class="n">sphtools</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">target_points</span><span class="p">,</span> <span class="n">alm</span><span class="p">,</span> <span class="n">blm</span><span class="p">,</span> <span class="n">lmax</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+        <span class="n">target_field</span> <span class="o">=</span> <span class="n">sphfield</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sphfield</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="s1">&#39;dc&#39;</span> <span class="ow">in</span> <span class="n">target_type</span><span class="p">:</span>
+        <span class="n">target_field</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">target_points</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target_type</span> <span class="o">==</span> <span class="s1">&#39;dc_x&#39;</span><span class="p">:</span>
+            <span class="n">target_field</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">target_type</span> <span class="o">==</span> <span class="s1">&#39;dc_y&#39;</span><span class="p">:</span>
+            <span class="n">target_field</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">target_type</span> <span class="o">==</span> <span class="s1">&#39;dc_z&#39;</span><span class="p">:</span>
+            <span class="n">target_field</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">target_field</span></div>
+
+
+
+<div class="viewcode-block" id="BiplanarCoil">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil">[docs]</a>
+<span class="k">class</span> <span class="nc">BiplanarCoil</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Biplanar coil.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    planemesh : mesh</span>
+<span class="sd">        One of the meshes in the biplanar mesh pair. The loaded</span>
+<span class="sd">        mesh is duplicated and positioned in space</span>
+<span class="sd">        using the standoff and center.</span>
+<span class="sd">    center : array, shape (3, )</span>
+<span class="sd">        The center of the biplanar mesh pair.</span>
+<span class="sd">    N_suh : int</span>
+<span class="sd">        The number of harmonics to use in </span>
+<span class="sd">    standoff : float</span>
+<span class="sd">        The distance between the mesh pairs.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    trace_width : float</span>
+<span class="sd">        The trace width of the coil in mm.</span>
+<span class="sd">    cu_oz : float</span>
+<span class="sd">        The copper ounces per square feet.</span>
+<span class="sd">    loops_ : loop</span>
+<span class="sd">        The discretized current loop.</span>
+<span class="sd">    inductance : float</span>
+<span class="sd">        The coil self-inductance in uH.</span>
+<span class="sd">    length : float</span>
+<span class="sd">        The total length of the coil in m.</span>
+<span class="sd">    resistance : float</span>
+<span class="sd">        The resistance of the coil in ohms.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BiplanarCoil.__init__">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planemesh</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">N_suh</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">standoff</span><span class="o">=</span><span class="mf">1.6</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_standoff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">standoff</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trace_width</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># in mm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cu_oz</span> <span class="o">=</span> <span class="kc">None</span>           <span class="c1"># oz per ft^2</span>
+
+        <span class="c1"># XXX: don&#39;t modify planemesh directly</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">planemesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">planemesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">planemesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">planemesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+
+        <span class="c1"># XXX: ideally there should be self.coil</span>
+        <span class="c1"># and self.coil_ but for now we&#39;ll fuse the two</span>
+        <span class="c1"># to not deal with deepcopy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span> <span class="o">=</span> <span class="n">mesh_to_coil</span><span class="p">(</span><span class="n">planemesh</span><span class="p">,</span> <span class="n">N_suh</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">_standoff</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loops_</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FCu</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BCu</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.fit">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">target_field</span><span class="p">,</span> <span class="n">abs_error</span><span class="o">=</span><span class="mf">0.025</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create bfield specifications used when optimizing the coil geometry</span>
+
+<span class="sd">        The absolute target field amplitude is not of importance,</span>
+<span class="sd">        and it is scaled to match the C matrix in the optimization function.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_field : array, shape (n_points, 3)</span>
+<span class="sd">            The vector target field.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">target_spec</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;coupling&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">B_coupling</span><span class="p">(</span><span class="n">target_points</span><span class="p">),</span>
+            <span class="s2">&quot;abs_error&quot;</span><span class="p">:</span> <span class="n">abs_error</span><span class="p">,</span>
+            <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">target_field</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">bfield_specification</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_spec</span><span class="p">]</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mesh_conductor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="p">,</span>
+                      <span class="n">bfield_specification</span><span class="o">=</span><span class="n">bfield_specification</span><span class="p">,</span>
+                      <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;minimum_ohmic_power&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">mosek</span>
+
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;solver&#39;</span><span class="p">:</span> <span class="s2">&quot;MOSEK&quot;</span><span class="p">,</span>
+                           <span class="s1">&#39;solver_opts&#39;</span><span class="p">:</span> <span class="p">{</span>
+                               <span class="s2">&quot;mosek_params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">mosek</span><span class="o">.</span><span class="n">iparam</span><span class="o">.</span><span class="n">num_threads</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
+                               <span class="p">}</span>
+                           <span class="p">})</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mosek not available. Using bfieldtools default solver&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">optimize_streamfunctions</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.discretize">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.discretize">[docs]</a>
+    <span class="k">def</span> <span class="nf">discretize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N_contours</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">trace_width</span><span class="o">=</span><span class="mf">4.</span><span class="p">,</span> <span class="n">cu_oz</span><span class="o">=</span><span class="mf">4.</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Discretize the solution into N_contours</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        N_contours : int</span>
+<span class="sd">            The number of contours.</span>
+<span class="sd">        trace_width : float</span>
+<span class="sd">            The tracewidth in mm.</span>
+<span class="sd">        cu_oz : float</span>
+<span class="sd">            The trace thickness in oz/ft^2.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trace_width</span> <span class="o">=</span> <span class="n">trace_width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cu_oz</span> <span class="o">=</span> <span class="n">cu_oz</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loops_</span> <span class="o">=</span> <span class="n">scalar_contour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">vert</span><span class="p">,</span>
+                                     <span class="n">N_contours</span><span class="o">=</span><span class="n">N_contours</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line_conductor_</span> <span class="o">=</span> <span class="n">LineConductor</span><span class="p">(</span><span class="n">loops</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loops_</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.predict">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.predict">[docs]</a>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_points</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict the field.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_points : array, (n_points, 3)</span>
+<span class="sd">            Plot the field at the target points.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        B_predicted : array, (n_points, 3)</span>
+<span class="sd">            The predicted field at the target points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">B_coupling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">B_coupling</span><span class="p">(</span><span class="n">target_points</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Computing effect of shielded room&#39;</span><span class="p">)</span>
+            <span class="n">shielded_room</span> <span class="o">=</span> <span class="n">MeshConductor</span><span class="p">(</span>
+                <span class="n">mesh_obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="p">,</span> <span class="n">process</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fix_normals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">basis_name</span><span class="o">=</span><span class="s2">&quot;vertex&quot;</span>
+            <span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="mf">1e-3</span>
+            <span class="n">shield_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="o">.</span><span class="n">vertices</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="o">.</span><span class="n">vertex_normals</span>
+            <span class="n">B_coupling</span> <span class="o">+=</span> <span class="n">shielded_room</span><span class="o">.</span><span class="n">B_coupling</span><span class="p">(</span><span class="n">target_points</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span>
+                <span class="n">shielded_room</span><span class="o">.</span><span class="n">U_coupling</span><span class="p">(</span><span class="n">shield_points</span><span class="p">),</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">U_coupling</span><span class="p">(</span><span class="n">shield_points</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done&#39;</span><span class="p">)</span>
+
+        <span class="n">B_expected</span> <span class="o">=</span> <span class="n">B_coupling</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">s</span>
+        <span class="k">return</span> <span class="n">B_expected</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.add_shield">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.add_shield">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_shield</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a shielded room.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span> <span class="o">=</span> <span class="n">mesh</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.remove_shield">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.remove_shield">[docs]</a>
+    <span class="k">def</span> <span class="nf">remove_shield</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove existing shield&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">mesh</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.evaluate">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.evaluate">[docs]</a>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_type</span><span class="p">,</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">target_field</span><span class="p">,</span>
+                 <span class="n">target_points_z</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate the coil.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_points : array, (n_points, 3)</span>
+<span class="sd">            Plot the field at the target points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">metrics</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
+            <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;efficiency&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;homog&#39;</span><span class="p">,</span> <span class="s1">&#39;inductance&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;resistance&#39;</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;target_radius&#39;</span><span class="p">]</span>
+
+        <span class="n">scores</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">:</span>
+                <span class="n">ef</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_points</span><span class="p">,</span>
+                                   <span class="n">target_points_z</span><span class="p">,</span> <span class="n">target_type</span><span class="p">)</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;efficiency (nT/mA)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ef</span>
+            <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+                <span class="n">err</span> <span class="o">=</span> <span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_field</span><span class="p">,</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">target_type</span><span class="p">)</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ef</span>
+            <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;homog&#39;</span><span class="p">:</span>
+                <span class="n">hmg</span> <span class="o">=</span> <span class="n">homogeneity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_field</span><span class="p">,</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">target_type</span><span class="p">)</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;homogeneity (%)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hmg</span>
+            <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;inductance&#39;</span><span class="p">:</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;inductance (uH)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inductance</span>
+            <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;resistance&#39;</span><span class="p">:</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;resistance (ohm)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resistance</span>
+            <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;length&#39;</span><span class="p">:</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;length (m)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
+            <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;target_radius&#39;</span><span class="p">:</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;target radius (cm)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_points</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">return</span> <span class="n">scores</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The total length of the coil.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">line_conductor_</span><span class="o">.</span><span class="n">length</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The length and width of the coil.&quot;&quot;&quot;</span>
+        <span class="n">loops</span> <span class="o">=</span> <span class="p">[</span><span class="n">loop</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loops_</span> <span class="k">if</span> <span class="n">loop</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">min_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">loops</span><span class="p">])</span>
+        <span class="n">max_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">loops</span><span class="p">])</span>
+
+        <span class="n">min_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">loops</span><span class="p">])</span>
+        <span class="n">max_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">loops</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trace_width</span> <span class="o">*</span> <span class="mf">1e-3</span> <span class="o">+</span> <span class="p">(</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">min_x</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trace_width</span> <span class="o">*</span> <span class="mf">1e-3</span> <span class="o">+</span> <span class="p">(</span><span class="n">max_y</span> <span class="o">-</span> <span class="n">min_y</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">resistance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The coil resistance.&quot;&quot;&quot;</span>
+        <span class="c1"># this formulation for PCB resistance matches the internet calculators</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="mf">1.72e-8</span>                       <span class="c1"># ohm-m at 25C</span>
+        <span class="n">thickness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cu_oz</span> <span class="o">*</span> <span class="mf">35e-6</span>      <span class="c1"># (1 oz cu == 35 um thick)</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trace_width</span> <span class="o">*</span> <span class="mf">1e-3</span>     <span class="c1"># m</span>
+
+        <span class="n">resistance</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">/</span> <span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">thickness</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resistance</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inductance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The coil self-inductance&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">coil_inductance</span><span class="p">(</span><span class="n">Nloops</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loops_</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1e6</span>
+
+    <span class="k">def</span> <span class="nf">plot_field_2D</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">target_points_2D</span><span class="p">,</span> <span class="n">grid</span> <span class="o">=</span> <span class="n">get_2D_point_grid</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                                                    <span class="n">sidelength</span><span class="o">=</span><span class="mf">.7</span><span class="p">)</span>
+        <span class="n">field_2D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">target_points_2D</span><span class="p">)</span>
+
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">.35</span><span class="p">,</span><span class="mf">.35</span><span class="p">,</span><span class="mf">.01</span><span class="p">)</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">points</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">profile_ax</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">target_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_points</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">target_points</span><span class="p">[:,</span> <span class="n">profile_ax</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span>
+        <span class="n">field_1D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">target_points</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">field_2D</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">field_1D</span><span class="p">[:,</span> <span class="n">profile_ax</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e9</span><span class="p">,</span> <span class="s1">&#39;bo-&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BiplanarCoil.plot">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check_normals</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the coil.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_points : array, (n_points, 3)</span>
+<span class="sd">            Plot the field at the target points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">shield</span> <span class="o">=</span> <span class="n">trimesh_to_pv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="p">)</span>
+
+        <span class="n">plotter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_coil</span><span class="p">(</span><span class="n">single</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">plotter</span><span class="o">.</span><span class="n">show_axes</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">shield</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">check_normals</span><span class="p">:</span>
+                <span class="n">plotter</span><span class="o">.</span><span class="n">add_arrows</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="o">.</span><span class="n">vertices</span><span class="p">[::</span><span class="mi">100</span><span class="p">],</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="o">.</span><span class="n">vertex_normals</span><span class="p">[::</span><span class="mi">100</span><span class="p">],</span> <span class="n">mag</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="mf">1e-3</span>
+                <span class="n">shield_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="o">.</span><span class="n">vertices</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shield</span><span class="o">.</span><span class="n">vertex_normals</span>
+                <span class="n">plotter</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">shield_points</span><span class="p">[::</span><span class="mi">40</span><span class="p">],</span> <span class="n">point_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="n">plotter</span><span class="o">.</span><span class="n">view_isometric</span><span class="p">()</span>
+        <span class="n">plotter</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">roll</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># plotter.camera.elevation = -45.</span>
+        <span class="c1"># plotter.camera.azimuth = 30.</span>
+        <span class="c1"># plotter.camera.zoom(0.7)</span>
+
+        <span class="k">return</span> <span class="n">plotter</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.plot_coil">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.plot_coil">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_coil</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">discretized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">single</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the coil</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        discretized : bool</span>
+<span class="sd">            Plot the discretized coil.</span>
+<span class="sd">        single : bool</span>
+<span class="sd">            Plot only one coil loop in the pair.</span>
+<span class="sd">            Applies only if discretized is True.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        plotter : pyvista.Plotter</span>
+<span class="sd">            The plotter object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">1700</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">discretized</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coil_</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">plotter</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">loops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loops_</span>
+            <span class="k">if</span> <span class="n">single</span><span class="p">:</span>
+                <span class="n">loops</span> <span class="o">=</span> <span class="p">[</span><span class="n">loop</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loops_</span> <span class="k">if</span> <span class="n">loop</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">plot_3d_current_loops</span><span class="p">(</span><span class="n">loops</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+                                  <span class="n">figure</span><span class="o">=</span><span class="n">plotter</span><span class="p">,</span> <span class="n">tube_radius</span><span class="o">=</span><span class="mf">0.0025</span><span class="p">,</span>
+                                  <span class="n">origin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_standoff</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span>
+
+        <span class="n">plotter</span><span class="o">.</span><span class="n">camera_position</span> <span class="o">=</span> <span class="s1">&#39;xy&#39;</span>
+        <span class="k">return</span> <span class="n">plotter</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.plot_field">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.plot_field">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_points</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the field.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_points : array, (n_points, 3)</span>
+<span class="sd">            Plot the field at the target points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># XXX: add option to plot non-discretized stream functions</span>
+
+        <span class="c1"># plotter = pvqt.BackgroundPlotter(window_size=(1500, 1700))</span>
+        <span class="n">plotter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+        <span class="n">B_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">target_points</span><span class="p">)</span>
+        <span class="n">plotter</span><span class="o">.</span><span class="n">add_arrows</span><span class="p">(</span><span class="n">target_points</span><span class="p">,</span> <span class="n">B_target</span><span class="p">,</span> <span class="n">mag</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+                           <span class="c1"># clim=(0.075, 0.125), cmap=&#39;jet&#39;)</span>
+
+        <span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">plotter</span></div>
+
+        <span class="c1"># mlab.quiver3d(*target_points.T, *B_target.T, mode=&quot;arrow&quot;,</span>
+        <span class="c1">#               scale_factor=0.1)</span>
+
+
+<div class="viewcode-block" id="BiplanarCoil.make_cuts">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.make_cuts">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_cuts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make cuts to join loops.&quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+        <span class="c1"># Discard one panel of the pair</span>
+        <span class="n">loops</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loops_</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_standoff</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                <span class="n">loop</span> <span class="o">=</span> <span class="p">[</span><span class="n">pt</span> <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">loop</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">loop</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># make closed loop</span>
+                <span class="n">loops</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">loop</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+        <span class="n">colors</span> <span class="o">=</span> <span class="n">get_loop_colors</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">loop</span><span class="p">)</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">loops</span><span class="p">])</span>
+        <span class="c1"># Discard z-coordinate</span>
+        <span class="n">loops</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">loop</span><span class="p">)[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">loops</span><span class="p">]</span>
+
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">loop</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">loops</span><span class="p">):</span>
+            <span class="n">loop_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">loop</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loop_arr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">loop_arr</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+        <span class="n">ld</span> <span class="o">=</span> <span class="n">LineDrawer</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        <span class="n">line_cuts</span><span class="p">,</span> <span class="n">line_cuts_shifted</span> <span class="o">=</span> <span class="n">ld</span><span class="o">.</span><span class="n">get_line_cuts</span><span class="p">()</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">line_cut</span><span class="p">,</span> <span class="n">line_cut_shifted</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">line_cuts</span><span class="p">,</span> <span class="n">line_cuts_shifted</span><span class="p">):</span>
+
+            <span class="n">continuous_loop</span><span class="p">,</span> <span class="n">reverse_paths</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">join_loops_at_cuts</span><span class="p">(</span><span class="n">loops</span><span class="p">,</span> <span class="n">line_cut</span><span class="p">,</span> <span class="n">line_cut_shifted</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FCu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">continuous_loop</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">BCu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reverse_paths</span><span class="p">)</span>
+
+            <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;cc&#39;</span> <span class="k">else</span> <span class="s1">&#39;b&#39;</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">continuous_loop</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">continuous_loop</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reverse_paths</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">reverse_paths</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span>
+                         <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="BiplanarCoil.save">
+<a class="viewcode-back" href="../../generated/opmcoils.BiplanarCoil.html#opmcoils.BiplanarCoil.save">[docs]</a>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pcb_fname</span><span class="p">,</span> <span class="n">kicad_header_fname</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">750</span><span class="p">,</span> <span class="mi">750</span><span class="p">),</span> <span class="n">bounds_wholeloop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the files to be loaded in KICAD.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pdb_fname : str</span>
+<span class="sd">            The file name of the KICAD pcb file.</span>
+<span class="sd">        kicad_header_fname : str</span>
+<span class="sd">            The file name of the KICAD header.</span>
+<span class="sd">        bounds : tuple of (min_x, max_x, min_y, max_y)</span>
+<span class="sd">            Save only loops within the bounds expressed in mm.</span>
+<span class="sd">        origin : tuple of (x, y)</span>
+<span class="sd">            The origin in mm.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">FCu_truncated</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">BCu_truncated</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">FCu_loop</span><span class="p">,</span> <span class="n">BCu_loop</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FCu</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">BCu</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">_check_bounds</span><span class="p">(</span><span class="n">FCu_loop</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">bounds_wholeloop</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">FCu_truncated</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FCu_loop</span><span class="p">)</span>
+                <span class="n">BCu_truncated</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BCu_loop</span><span class="p">)</span>
+        
+        <span class="c1">#print(&quot;in save\n&quot;)</span>
+        <span class="c1">#print(len(FCu_truncated))</span>
+        <span class="c1">#print(len(BCu_truncated))</span>
+        <span class="n">export_to_kicad</span><span class="p">(</span><span class="n">pcb_fname</span><span class="o">=</span><span class="n">pcb_fname</span><span class="p">,</span>
+                        <span class="n">kicad_header_fname</span><span class="o">=</span><span class="n">kicad_header_fname</span><span class="p">,</span>
+                        <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span>
+                        <span class="n">loops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;F.Cu&#39;</span><span class="p">:</span> <span class="n">FCu_truncated</span><span class="p">,</span> <span class="s1">&#39;B.Cu&#39;</span><span class="p">:</span> <span class="n">BCu_truncated</span><span class="p">},</span>
+                        <span class="n">net</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">trace_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trace_width</span><span class="p">,</span>
+                        <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">bounds_wholeloop</span><span class="o">=</span><span class="n">bounds_wholeloop</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+    <span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">scaling_factor</span> <span class="o">=</span> <span class="mf">0.16</span>
+    <span class="n">standoff</span> <span class="o">=</span> <span class="mf">1.6</span>
+    <span class="n">target_type</span> <span class="o">=</span> <span class="s1">&#39;dc_z&#39;</span>
+
+    <span class="n">planemesh</span> <span class="o">=</span> <span class="n">load_example_mesh</span><span class="p">(</span><span class="s2">&quot;10x10_plane_hires&quot;</span><span class="p">)</span>
+    <span class="n">planemesh</span><span class="o">.</span><span class="n">apply_scale</span><span class="p">(</span><span class="n">scaling_factor</span><span class="p">)</span>
+
+    <span class="n">coil</span> <span class="o">=</span> <span class="n">BiplanarCoil</span><span class="p">(</span><span class="n">planemesh</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">N_suh</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">standoff</span><span class="o">=</span><span class="mf">1.6</span><span class="p">)</span>
+
+    <span class="n">target_points</span><span class="p">,</span> <span class="n">points_z</span> <span class="o">=</span> <span class="n">get_sphere_points</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sidelength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">target_field</span> <span class="o">=</span> <span class="n">get_target_field</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">target_points</span><span class="p">)</span>
+
+    <span class="n">coil</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">target_points</span><span class="p">,</span> <span class="n">target_field</span><span class="p">)</span>
+    <span class="n">coil</span><span class="o">.</span><span class="n">discretize</span><span class="p">(</span><span class="n">N_contours</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">trace_width</span><span class="o">=</span><span class="mf">4.</span><span class="p">,</span> <span class="n">cu_oz</span><span class="o">=</span><span class="mf">3.</span><span class="p">)</span>
+    <span class="n">coil</span><span class="o">.</span><span class="n">plot_field</span><span class="p">(</span><span class="n">target_points</span><span class="p">)</span>
+
+    <span class="n">effs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">Rs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">n_contours</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">n_contour</span> <span class="ow">in</span> <span class="n">n_contours</span><span class="p">:</span>
+        <span class="n">coil</span><span class="o">.</span><span class="n">discretize</span><span class="p">(</span><span class="n">N_contours</span><span class="o">=</span><span class="n">n_contour</span><span class="p">,</span> <span class="n">trace_width</span><span class="o">=</span><span class="mf">4.</span><span class="p">,</span>
+                        <span class="n">cu_oz</span><span class="o">=</span><span class="mf">3.</span><span class="p">)</span>
+        <span class="n">ef</span> <span class="o">=</span> <span class="n">coil</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">target_points</span><span class="p">,</span> <span class="n">points_z</span><span class="p">,</span>
+                           <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;efficiency&#39;</span><span class="p">)</span>
+        <span class="n">effs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ef</span><span class="p">)</span>
+        <span class="n">Rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coil</span><span class="o">.</span><span class="n">resistance</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_contours</span><span class="p">,</span> <span class="n">effs</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_contours&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Efficiency (nT/mA)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">twinx</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_contours</span><span class="p">,</span> <span class="n">Rs</span><span class="p">,</span> <span class="s1">&#39;ro-&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Resistance (ohm)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2023, Mainak Jas.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
