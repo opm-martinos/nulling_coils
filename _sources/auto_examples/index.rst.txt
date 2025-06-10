@@ -9,6 +9,7 @@ OPM-coils examples
 
     <div class="sphx-glr-thumbnails">
 
+.. thumbnail-parent-div-open
 
 .. raw:: html
 
@@ -63,7 +64,7 @@ OPM-coils examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Here, we will demonstrate how to load PCB files and save them to HDF5 format after inferring th...">
+    <div class="sphx-glr-thumbcontainer" tooltip="Here, we will demonstrate how to load PCB files and save them to HDF5 format after inferring the connections between the wire segments.">
 
 .. only:: html
 
@@ -80,7 +81,7 @@ OPM-coils examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Example demonstrating how to load the PCB from HDF5 files which includes the connection informa...">
+    <div class="sphx-glr-thumbcontainer" tooltip="Example demonstrating how to load the PCB from HDF5 files which includes the connection information between wire segments and how to visualize the field due to them.">
 
 .. only:: html
 
@@ -97,7 +98,7 @@ OPM-coils examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze somatosensory evoked field (SEF) data collected with o...">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze somatosensory evoked field (SEF) data collected with optically pumped magnetometers (OPM) and compare it with superconducting quantum interference device (SQUID) data. The OPM data was obtained with the background field nulling coils we developed.">
 
 .. only:: html
 
@@ -111,6 +112,8 @@ OPM-coils examples
       <div class="sphx-glr-thumbnail-title">06. Analyze SEF Data with OPM</div>
     </div>
 
+
+.. thumbnail-parent-div-close
 
 .. raw:: html
 

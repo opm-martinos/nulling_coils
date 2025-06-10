@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_auto_examples_plot_compare_sef.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -29,7 +29,7 @@ obtained with the background field nulling coils we developed.
 
 .. GENERATED FROM PYTHON SOURCE LINES 11-25
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Author: Mainak Jas <mjas@mgh.harvard.edu>
@@ -58,7 +58,7 @@ First, use pooch to download the data
 
 .. GENERATED FROM PYTHON SOURCE LINES 27-42
 
-.. code-block:: default
+.. code-block:: Python
 
 
     url = "https://osf.io/aqh27/download"
@@ -88,7 +88,7 @@ Then, we define the file paths
 
 .. GENERATED FROM PYTHON SOURCE LINES 44-55
 
-.. code-block:: default
+.. code-block:: Python
 
 
     subject = 'sub-01'
@@ -114,7 +114,7 @@ Then, we start by processing OPM data
 
 .. GENERATED FROM PYTHON SOURCE LINES 57-65
 
-.. code-block:: default
+.. code-block:: Python
 
     bads = ['01:15', '00:14', '00:15', '00:16']
 
@@ -132,7 +132,7 @@ Then, we start by processing OPM data
 
  .. code-block:: none
 
-    Opening raw data file /Users/mainak/Desktop/github_repos/cmeg_coil_design/examples/data/sef_data/sub-01/opm_meg/20240722/20240722_sub-01_paneltesting_median_raw.fif...
+    Opening raw data file /Users/mainak/Desktop/04_github_repos/opm_coils/examples/data/sef_data/sub-01/opm_meg/20240722/20240722_sub-01_paneltesting_median_raw.fif...
     Isotrak not found
         Range : 0 ... 303721 =      0.000 ...   303.721 secs
     Ready.
@@ -299,8 +299,8 @@ Then, we start by processing OPM data
 
 
 
-    <tr class="repr-section-header general-15d92238-ecd5-4666-880b-379dc11273f7"  title="Hide section" 
-        onclick="toggleVisibility('general-15d92238-ecd5-4666-880b-379dc11273f7')">
+    <tr class="repr-section-header general-08a65da1-148e-458e-8cab-5b58671f2d8b"  title="Hide section" 
+        onclick="toggleVisibility('general-08a65da1-148e-458e-8cab-5b58671f2d8b')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -312,7 +312,7 @@ Then, we start by processing OPM data
         </th>
     </tr>
 
-    <tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <tr class="repr-element general-08a65da1-148e-458e-8cab-5b58671f2d8b ">
         <td class="repr-section-toggle-col"></td>
         <td>Filename(s)</td>
         <td>
@@ -323,26 +323,26 @@ Then, we start by processing OPM data
         </td>
     </tr>
 
-    <tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <tr class="repr-element general-08a65da1-148e-458e-8cab-5b58671f2d8b ">
         <td class="repr-section-toggle-col"></td>
         <td>MNE object type</td>
         <td>Raw</td>
     </tr>
-    <tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <tr class="repr-element general-08a65da1-148e-458e-8cab-5b58671f2d8b ">
         <td class="repr-section-toggle-col"></td>
         <td>Measurement date</td>
     
         <td>2024-07-22 at 18:06:45 UTC</td>
     
     </tr>
-    <tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <tr class="repr-element general-08a65da1-148e-458e-8cab-5b58671f2d8b ">
         <td class="repr-section-toggle-col"></td>
         <td>Participant</td>
     
         <td>Unknown</td>
     
     </tr>
-    <tr class="repr-element general-15d92238-ecd5-4666-880b-379dc11273f7 ">
+    <tr class="repr-element general-08a65da1-148e-458e-8cab-5b58671f2d8b ">
         <td class="repr-section-toggle-col"></td>
         <td>Experimenter</td>
     
@@ -357,8 +357,8 @@ Then, we start by processing OPM data
 
 
 
-    <tr class="repr-section-header acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0" 
-        title="Hide section"  onclick="toggleVisibility('acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0')">
+    <tr class="repr-section-header acquisition-abd5c623-ebc6-40b3-93d4-7b9968993f05" 
+        title="Hide section"  onclick="toggleVisibility('acquisition-abd5c623-ebc6-40b3-93d4-7b9968993f05')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -370,7 +370,7 @@ Then, we start by processing OPM data
         </th>
     </tr>
 
-    <tr class="repr-element acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0 ">
+    <tr class="repr-element acquisition-abd5c623-ebc6-40b3-93d4-7b9968993f05 ">
         <td class="repr-section-toggle-col"></td>
         <td>Duration</td>
         <td>00:05:04 (HH:MM:SS)</td>
@@ -383,14 +383,14 @@ Then, we start by processing OPM data
 
 
 
-    <tr class="repr-element acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0 ">
+    <tr class="repr-element acquisition-abd5c623-ebc6-40b3-93d4-7b9968993f05 ">
         <td class="repr-section-toggle-col"></td>
         <td>Sampling frequency</td>
         <td>1000.00 Hz</td>
     </tr>
 
 
-    <tr class="repr-element acquisition-ac2630a4-1565-4e58-b2fe-b34333134fa0 ">
+    <tr class="repr-element acquisition-abd5c623-ebc6-40b3-93d4-7b9968993f05 ">
         <td class="repr-section-toggle-col"></td>
         <td>Time points</td>
         <td>303,722</td>
@@ -405,8 +405,8 @@ Then, we start by processing OPM data
 
 
 
-    <tr class="repr-section-header channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06"  title="Hide section" 
-        onclick="toggleVisibility('channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06')">
+    <tr class="repr-section-header channels-0ae23f6a-f071-427d-8786-24e03a2256ce"  title="Hide section" 
+        onclick="toggleVisibility('channels-0ae23f6a-f071-427d-8786-24e03a2256ce')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -419,7 +419,7 @@ Then, we start by processing OPM data
     </tr>
 
 
-    <tr class="repr-element channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06 ">
+    <tr class="repr-element channels-0ae23f6a-f071-427d-8786-24e03a2256ce ">
         <td class="repr-section-toggle-col"></td>
         <td>Magnetometers</td>
         <td>
@@ -437,7 +437,7 @@ Then, we start by processing OPM data
     </tr>
 
 
-    <tr class="repr-element channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06 ">
+    <tr class="repr-element channels-0ae23f6a-f071-427d-8786-24e03a2256ce ">
         <td class="repr-section-toggle-col"></td>
         <td>Stimulus</td>
         <td>
@@ -450,7 +450,7 @@ Then, we start by processing OPM data
     </tr>
 
 
-    <tr class="repr-element channels-cc4955d4-0012-4ddb-a962-f2a609b4cd06 ">
+    <tr class="repr-element channels-0ae23f6a-f071-427d-8786-24e03a2256ce ">
         <td class="repr-section-toggle-col"></td>
         <td>Head & sensor digitization</td>
     
@@ -465,8 +465,8 @@ Then, we start by processing OPM data
 
 
 
-    <tr class="repr-section-header filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd"  title="Hide section" 
-        onclick="toggleVisibility('filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd')">
+    <tr class="repr-section-header filters-8a49035b-c4f9-4f40-839f-c782c408c4a7"  title="Hide section" 
+        onclick="toggleVisibility('filters-8a49035b-c4f9-4f40-839f-c782c408c4a7')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -478,14 +478,14 @@ Then, we start by processing OPM data
         </th>
     </tr>
 
-    <tr class="repr-element filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd ">
+    <tr class="repr-element filters-8a49035b-c4f9-4f40-839f-c782c408c4a7 ">
         <td class="repr-section-toggle-col"></td>
         <td>Highpass</td>
         <td>0.00 Hz</td>
     </tr>
 
 
-    <tr class="repr-element filters-aa2954c6-dbe6-4521-85bf-cb2e8f9803dd ">
+    <tr class="repr-element filters-8a49035b-c4f9-4f40-839f-c782c408c4a7 ">
         <td class="repr-section-toggle-col"></td>
         <td>Lowpass</td>
         <td>500.00 Hz</td>
@@ -504,7 +504,7 @@ will annotate the artifacts to avoid filtering the sharp transients.
 
 .. GENERATED FROM PYTHON SOURCE LINES 68-81
 
-.. code-block:: default
+.. code-block:: Python
 
     events = find_events(raw_opm, min_duration=1. / raw_opm.info['sfreq'])
     annot = mne.annotations_from_events(events, raw_opm.info['sfreq'],
@@ -729,8 +729,8 @@ will annotate the artifacts to avoid filtering the sharp transients.
 
 
 
-    <tr class="repr-section-header general-253d15cf-2eb0-46c1-b522-e3a3bc42a930"  title="Hide section" 
-        onclick="toggleVisibility('general-253d15cf-2eb0-46c1-b522-e3a3bc42a930')">
+    <tr class="repr-section-header general-e74e15be-7ec3-4cf3-9920-8f917a1ce998"  title="Hide section" 
+        onclick="toggleVisibility('general-e74e15be-7ec3-4cf3-9920-8f917a1ce998')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -742,7 +742,7 @@ will annotate the artifacts to avoid filtering the sharp transients.
         </th>
     </tr>
 
-    <tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <tr class="repr-element general-e74e15be-7ec3-4cf3-9920-8f917a1ce998 ">
         <td class="repr-section-toggle-col"></td>
         <td>Filename(s)</td>
         <td>
@@ -753,26 +753,26 @@ will annotate the artifacts to avoid filtering the sharp transients.
         </td>
     </tr>
 
-    <tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <tr class="repr-element general-e74e15be-7ec3-4cf3-9920-8f917a1ce998 ">
         <td class="repr-section-toggle-col"></td>
         <td>MNE object type</td>
         <td>Raw</td>
     </tr>
-    <tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <tr class="repr-element general-e74e15be-7ec3-4cf3-9920-8f917a1ce998 ">
         <td class="repr-section-toggle-col"></td>
         <td>Measurement date</td>
     
         <td>2024-07-22 at 18:06:45 UTC</td>
     
     </tr>
-    <tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <tr class="repr-element general-e74e15be-7ec3-4cf3-9920-8f917a1ce998 ">
         <td class="repr-section-toggle-col"></td>
         <td>Participant</td>
     
         <td>Unknown</td>
     
     </tr>
-    <tr class="repr-element general-253d15cf-2eb0-46c1-b522-e3a3bc42a930 ">
+    <tr class="repr-element general-e74e15be-7ec3-4cf3-9920-8f917a1ce998 ">
         <td class="repr-section-toggle-col"></td>
         <td>Experimenter</td>
     
@@ -787,8 +787,8 @@ will annotate the artifacts to avoid filtering the sharp transients.
 
 
 
-    <tr class="repr-section-header acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60" 
-        title="Hide section"  onclick="toggleVisibility('acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60')">
+    <tr class="repr-section-header acquisition-46a39d83-5092-438b-9576-5543db465ce7" 
+        title="Hide section"  onclick="toggleVisibility('acquisition-46a39d83-5092-438b-9576-5543db465ce7')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -800,7 +800,7 @@ will annotate the artifacts to avoid filtering the sharp transients.
         </th>
     </tr>
 
-    <tr class="repr-element acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60 ">
+    <tr class="repr-element acquisition-46a39d83-5092-438b-9576-5543db465ce7 ">
         <td class="repr-section-toggle-col"></td>
         <td>Duration</td>
         <td>00:05:04 (HH:MM:SS)</td>
@@ -813,14 +813,14 @@ will annotate the artifacts to avoid filtering the sharp transients.
 
 
 
-    <tr class="repr-element acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60 ">
+    <tr class="repr-element acquisition-46a39d83-5092-438b-9576-5543db465ce7 ">
         <td class="repr-section-toggle-col"></td>
         <td>Sampling frequency</td>
         <td>1000.00 Hz</td>
     </tr>
 
 
-    <tr class="repr-element acquisition-9ffca490-26de-4c90-ab63-e3fc29c56a60 ">
+    <tr class="repr-element acquisition-46a39d83-5092-438b-9576-5543db465ce7 ">
         <td class="repr-section-toggle-col"></td>
         <td>Time points</td>
         <td>303,722</td>
@@ -835,8 +835,8 @@ will annotate the artifacts to avoid filtering the sharp transients.
 
 
 
-    <tr class="repr-section-header channels-00b704ec-6e0b-4418-9879-c5721f47fd14"  title="Hide section" 
-        onclick="toggleVisibility('channels-00b704ec-6e0b-4418-9879-c5721f47fd14')">
+    <tr class="repr-section-header channels-7b8e4e90-7622-42d4-ac62-ab19b3a414b6"  title="Hide section" 
+        onclick="toggleVisibility('channels-7b8e4e90-7622-42d4-ac62-ab19b3a414b6')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -849,7 +849,7 @@ will annotate the artifacts to avoid filtering the sharp transients.
     </tr>
 
 
-    <tr class="repr-element channels-00b704ec-6e0b-4418-9879-c5721f47fd14 ">
+    <tr class="repr-element channels-7b8e4e90-7622-42d4-ac62-ab19b3a414b6 ">
         <td class="repr-section-toggle-col"></td>
         <td>Magnetometers</td>
         <td>
@@ -867,7 +867,7 @@ will annotate the artifacts to avoid filtering the sharp transients.
     </tr>
 
 
-    <tr class="repr-element channels-00b704ec-6e0b-4418-9879-c5721f47fd14 ">
+    <tr class="repr-element channels-7b8e4e90-7622-42d4-ac62-ab19b3a414b6 ">
         <td class="repr-section-toggle-col"></td>
         <td>Stimulus</td>
         <td>
@@ -880,7 +880,7 @@ will annotate the artifacts to avoid filtering the sharp transients.
     </tr>
 
 
-    <tr class="repr-element channels-00b704ec-6e0b-4418-9879-c5721f47fd14 ">
+    <tr class="repr-element channels-7b8e4e90-7622-42d4-ac62-ab19b3a414b6 ">
         <td class="repr-section-toggle-col"></td>
         <td>Head & sensor digitization</td>
     
@@ -895,8 +895,8 @@ will annotate the artifacts to avoid filtering the sharp transients.
 
 
 
-    <tr class="repr-section-header filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c"  title="Hide section" 
-        onclick="toggleVisibility('filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c')">
+    <tr class="repr-section-header filters-2e371b31-3fc0-4b76-9d7e-271831447bf3"  title="Hide section" 
+        onclick="toggleVisibility('filters-2e371b31-3fc0-4b76-9d7e-271831447bf3')">
         <th class="repr-section-toggle-col">
             <button>
             
@@ -908,14 +908,14 @@ will annotate the artifacts to avoid filtering the sharp transients.
         </th>
     </tr>
 
-    <tr class="repr-element filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c ">
+    <tr class="repr-element filters-2e371b31-3fc0-4b76-9d7e-271831447bf3 ">
         <td class="repr-section-toggle-col"></td>
         <td>Highpass</td>
         <td>4.00 Hz</td>
     </tr>
 
 
-    <tr class="repr-element filters-cdaeeae6-f1bf-46d5-b130-5468bc02f63c ">
+    <tr class="repr-element filters-2e371b31-3fc0-4b76-9d7e-271831447bf3 ">
         <td class="repr-section-toggle-col"></td>
         <td>Lowpass</td>
         <td>150.00 Hz</td>
@@ -933,7 +933,7 @@ Then, we create evoked response
 
 .. GENERATED FROM PYTHON SOURCE LINES 83-90
 
-.. code-block:: default
+.. code-block:: Python
 
     reject = None # dict(mag=11e-12)
     epochs_opm = mne.Epochs(raw_opm, events, tmax=0.3,  # ISI = 300 ms
@@ -968,7 +968,7 @@ and plot the evoked response with spatial colors.
 
 .. GENERATED FROM PYTHON SOURCE LINES 93-102
 
-.. code-block:: default
+.. code-block:: Python
 
     info_helmet = read_opm_info(helmet_info_fname)
 
@@ -1000,11 +1000,413 @@ and plot the evoked response with spatial colors.
 
 .. GENERATED FROM PYTHON SOURCE LINES 103-104
 
+We use HFC to remove background artifacts.
+
+.. GENERATED FROM PYTHON SOURCE LINES 104-113
+
+.. code-block:: Python
+
+    projs_hfc = mne.preprocessing.compute_proj_hfc(evoked_opm.info, order=1)
+    evoked_opm.add_proj(projs_hfc)
+    evoked_opm.apply_proj()
+
+    # Alternatively, one could use SSP:
+    # projs_ssp = mne.compute_proj_epochs(epochs_opm.copy().crop(tmax=0), n_mag=2)
+    # evoked_opm.add_proj(projs_ssp)
+    # evoked_opm.apply_proj()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    3 projection items deactivated
+    Created an SSP operator (subspace dimension = 3)
+    3 projection items activated
+    SSP projectors applied...
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+    <script type="text/javascript">
+        const toggleVisibility = (className) => {
+
+      const elements = document.querySelectorAll(`.${className}`)
+
+      elements.forEach(element => {
+        if (element.classList.contains('repr-section-header')) {
+          // Don't collapse the section header row.
+           return
+        }
+        if (element.classList.contains('repr-element-collapsed')) {
+          // Force a reflow to ensure the display change takes effect before removing the class
+          element.classList.remove('repr-element-collapsed')
+          element.offsetHeight // This forces the browser to recalculate layout
+          element.classList.remove('repr-element-faded')
+        } else {
+          // Start transition to hide the element
+          element.classList.add('repr-element-faded')
+          element.addEventListener('transitionend', handler = (e) => {
+            if (e.propertyName === 'opacity' && getComputedStyle(element).opacity === '0.2') {
+              element.classList.add('repr-element-collapsed')
+              element.removeEventListener('transitionend', handler)
+            }
+          });
+        }
+      });
+
+      // Take care of button (adjust caret)
+      const button = document.querySelectorAll(`.repr-section-header.${className} > th.repr-section-toggle-col > button`)[0]
+      button.classList.toggle('collapsed')
+
+      // Take care of the tooltip of the section header row
+      const sectionHeaderRow = document.querySelectorAll(`tr.repr-section-header.${className}`)[0]
+      sectionHeaderRow.classList.toggle('collapsed')
+      sectionHeaderRow.title = sectionHeaderRow.title === 'Hide section' ? 'Show section' : 'Hide section'
+    }
+    </script>
+
+    <style type="text/css">
+        table.repr.table.table-hover.table-striped.table-sm.table-responsive.small {
+      /* Don't make rows wider than they need to be. */
+      display: inline;
+    }
+
+    table > tbody > tr.repr-element > td {
+      /* Apply a tighter layout to the table cells. */
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      padding-right: 1rem;
+    }
+
+    table > tbody > tr > td.repr-section-toggle-col {
+      /* Remove background and border of the first cell in every row
+         (this row is only used for the collapse / uncollapse caret)
+
+         TODO: Need to find a good solution for VS Code that works in both
+               light and dark mode. */
+      border-color: transparent;
+      --bs-table-accent-bg: transparent;
+    }
+
+    tr.repr-section-header {
+      /* Remove stripes from section header rows */
+      background-color: transparent;
+      border-color: transparent;
+      --bs-table-striped-bg: transparent;
+      cursor: pointer;
+    }
+
+    tr.repr-section-header > th {
+      text-align: left !important;
+      vertical-align: middle;
+    }
+
+    .repr-element, tr.repr-element > td {
+      opacity: 1;
+      text-align: left !important;
+    }
+
+    .repr-element-faded {
+      transition: 0.3s ease;
+      opacity: 0.2;
+    }
+
+    .repr-element-collapsed {
+      display: none;
+    }
+
+    /* Collapse / uncollapse button and the caret it contains. */
+    .repr-section-toggle-col button {
+      cursor: pointer;
+      width: 1rem;
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    span.collapse-uncollapse-caret {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      background-repeat: no-repeat;
+      background-position: left;
+      background-size: contain;
+    }
+
+    /* The collapse / uncollapse carets were copied from the free Font Awesome collection and adjusted. */
+
+    /* Default to black carets for light mode */
+    .repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+      background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+    }
+
+    .repr-section-toggle-col
+      > button:not(.collapsed)
+      > span.collapse-uncollapse-caret {
+      background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+    }
+
+    /* Use white carets for dark mode */
+    @media (prefers-color-scheme: dark) {
+      .repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+        background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+      }
+
+      .repr-section-toggle-col
+        > button:not(.collapsed)
+        > span.collapse-uncollapse-caret {
+        background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+      }
+    }
+
+    .channel-names-btn {
+      padding: 0;
+      border: none;
+      background: none;
+      text-decoration: underline;
+      text-decoration-style: dashed;
+      cursor: pointer;
+      color: #0d6efd;
+    }
+
+    .channel-names-btn:hover {
+      color: #0a58ca;
+    }
+    </style>
+
+
+
+    <table class="repr table table-hover table-striped table-sm table-responsive small">
+    
+
+
+
+
+
+
+
+    <tr class="repr-section-header general-ab23c667-5780-4e3c-86f5-b22e2ff17ec6"  title="Hide section" 
+        onclick="toggleVisibility('general-ab23c667-5780-4e3c-86f5-b22e2ff17ec6')">
+        <th class="repr-section-toggle-col">
+            <button>
+            
+                <span class="collapse-uncollapse-caret"></span>
+            </button>
+        </th>
+        <th colspan="2">
+            <strong>General</strong>
+        </th>
+    </tr>
+
+    <tr class="repr-element general-ab23c667-5780-4e3c-86f5-b22e2ff17ec6 ">
+        <td class="repr-section-toggle-col"></td>
+        <td>MNE object type</td>
+        <td>EvokedArray</td>
+    </tr>
+    <tr class="repr-element general-ab23c667-5780-4e3c-86f5-b22e2ff17ec6 ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Measurement date</td>
+    
+        <td>2024-07-22 at 18:06:45 UTC</td>
+    
+    </tr>
+    <tr class="repr-element general-ab23c667-5780-4e3c-86f5-b22e2ff17ec6 ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Participant</td>
+    
+        <td>Unknown</td>
+    
+    </tr>
+    <tr class="repr-element general-ab23c667-5780-4e3c-86f5-b22e2ff17ec6 ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Experimenter</td>
+    
+        <td>Unknown</td>
+    
+    </tr>
+    
+
+
+
+
+
+
+
+    <tr class="repr-section-header acquisition-84b30c87-14b9-498e-ba30-770e19a6674e" 
+        title="Hide section"  onclick="toggleVisibility('acquisition-84b30c87-14b9-498e-ba30-770e19a6674e')">
+        <th class="repr-section-toggle-col">
+            <button>
+            
+                <span class="collapse-uncollapse-caret"></span>
+            </button>
+        </th>
+        <th colspan="2">
+            <strong>Acquisition</strong>
+        </th>
+    </tr>
+
+
+    <tr class="repr-element acquisition-84b30c87-14b9-498e-ba30-770e19a6674e ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Aggregation</td>
+    
+        <td>average of 607 epochs</td>
+    
+    </tr>
+
+
+    <tr class="repr-element acquisition-84b30c87-14b9-498e-ba30-770e19a6674e ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Condition</td>
+        <td>1</td>
+    </tr>
+
+
+
+
+    <tr class="repr-element acquisition-84b30c87-14b9-498e-ba30-770e19a6674e ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Time range</td>
+        <td>-0.200 – 0.300 s</td>
+    </tr>
+
+
+    <tr class="repr-element acquisition-84b30c87-14b9-498e-ba30-770e19a6674e ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Baseline</td>
+        <td>-0.200 – 0.000 s</td>
+    </tr>
+
+
+    <tr class="repr-element acquisition-84b30c87-14b9-498e-ba30-770e19a6674e ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Sampling frequency</td>
+        <td>1000.00 Hz</td>
+    </tr>
+
+
+    <tr class="repr-element acquisition-84b30c87-14b9-498e-ba30-770e19a6674e ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Time points</td>
+        <td>501</td>
+    </tr>
+
+
+    
+
+
+
+
+
+
+
+    <tr class="repr-section-header channels-86a3a2c1-0692-4948-b9c0-f18d303f59ce"  title="Hide section" 
+        onclick="toggleVisibility('channels-86a3a2c1-0692-4948-b9c0-f18d303f59ce')">
+        <th class="repr-section-toggle-col">
+            <button>
+            
+                <span class="collapse-uncollapse-caret"></span>
+            </button>
+        </th>
+        <th colspan="2">
+            <strong>Channels</strong>
+        </th>
+    </tr>
+
+
+    <tr class="repr-element channels-86a3a2c1-0692-4948-b9c0-f18d303f59ce ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Magnetometers</td>
+        <td>
+            <button class="channel-names-btn" onclick="alert('Good Magnetometers:\n\nMEG02, MEG09, MEG14, MEG17, MEG18, MEG26, MEG30, MEG37, MEG39, MEG51, MEG52, MEG58, MEG63, MEG75, MEG86')" title="(Click to open in popup)&#13;&#13;MEG02, MEG09, MEG14, MEG17, MEG18, MEG26, MEG30, MEG37, MEG39, MEG51, MEG52, MEG58, MEG63, MEG75, MEG86">
+                15
+            </button>
+
+        
+        
+            and <button class="channel-names-btn" onclick="alert('Bad Magnetometers:\n\n00:14, 00:15, 00:16, MEG48')" title="(Click to open in popup)&#13;&#13;00:14, 00:15, 00:16, MEG48">
+                4 bad
+            </button>
+        
+        </td>
+    </tr>
+
+
+    <tr class="repr-element channels-86a3a2c1-0692-4948-b9c0-f18d303f59ce ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Head & sensor digitization</td>
+    
+        <td>Not available</td>
+    
+    </tr>
+    
+
+
+
+
+
+
+
+    <tr class="repr-section-header filters-f9971cb5-c61f-480d-9a14-5e436b7d44bd"  title="Hide section" 
+        onclick="toggleVisibility('filters-f9971cb5-c61f-480d-9a14-5e436b7d44bd')">
+        <th class="repr-section-toggle-col">
+            <button>
+            
+                <span class="collapse-uncollapse-caret"></span>
+            </button>
+        </th>
+        <th colspan="2">
+            <strong>Filters</strong>
+        </th>
+    </tr>
+
+    <tr class="repr-element filters-f9971cb5-c61f-480d-9a14-5e436b7d44bd ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Highpass</td>
+        <td>4.00 Hz</td>
+    </tr>
+
+
+    <tr class="repr-element filters-f9971cb5-c61f-480d-9a14-5e436b7d44bd ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Lowpass</td>
+        <td>150.00 Hz</td>
+    </tr>
+
+
+    <tr class="repr-element filters-f9971cb5-c61f-480d-9a14-5e436b7d44bd ">
+        <td class="repr-section-toggle-col"></td>
+        <td>Projections</td>
+        <td>
+        
+            HFC: l=1 m=-1 (on)
+            <br />
+        
+            HFC: l=1 m=0 (on)
+            <br />
+        
+            HFC: l=1 m=1 (on)
+        
+        
+        </td>
+    </tr>
+
+    </table>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 114-115
+
 Let us now process the SQUID data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 104-123
+.. GENERATED FROM PYTHON SOURCE LINES 115-134
 
-.. code-block:: default
+.. code-block:: Python
 
     raw_squid = mne.io.read_raw_fif(raw_fname_squid, raw_fname_squid, preload=True)
     raw_squid.pick_types(meg='mag', stim=True)
@@ -1038,7 +1440,7 @@ Let us now process the SQUID data.
 
  .. code-block:: none
 
-    Opening raw data file /Users/mainak/Desktop/github_repos/cmeg_coil_design/examples/data/sef_data/sub-01/squid_meg/20240722/RT_median_raw.fif...
+    Opening raw data file /Users/mainak/Desktop/04_github_repos/opm_coils/examples/data/sef_data/sub-01/squid_meg/20240722/RT_median_raw.fif...
         Read a total of 6 projection items:
             generated with dossp-2.1 (1 x 306)  idle
             generated with dossp-2.1 (1 x 306)  idle
@@ -1052,7 +1454,7 @@ Let us now process the SQUID data.
     NOTE: pick_types() is a legacy function. New code should use inst.pick(...).
     496 events found on stim channel STI101
     Event IDs: [1]
-    /Users/mainak/Desktop/github_repos/cmeg_coil_design/examples/plot_compare_sef.py:113: RuntimeWarning: Omitted 45 annotation(s) that were outside data range.
+    /Users/mainak/Desktop/04_github_repos/opm_coils/examples/plot_compare_sef.py:124: RuntimeWarning: Omitted 45 annotation(s) that were outside data range.
       raw_squid.set_annotations(annot)
     Filtering raw data in 1 contiguous segment
     Setting up high-pass filter at 4 Hz
@@ -1103,7 +1505,7 @@ Let us now process the SQUID data.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 124-130
+.. GENERATED FROM PYTHON SOURCE LINES 135-141
 
 "Butterfly plots" are not appropriate to compare the
 evoked responses between OPMs and SQUID because the sensor
@@ -1112,10 +1514,9 @@ locations are not comparable and hide individual sensor time series.
 That is why, we pick sensors in similar locations on the
 OPM-MEG and SQUID-MEG and compare the evoked responses.
 
-.. GENERATED FROM PYTHON SOURCE LINES 130-155
+.. GENERATED FROM PYTHON SOURCE LINES 141-180
 
-.. code-block:: default
-
+.. code-block:: Python
 
     squid_chs = ['MEG0431', 'MEG0311']
     opm_chs = ['MEG30', 'MEG09']
@@ -1142,6 +1543,21 @@ OPM-MEG and SQUID-MEG and compare the evoked responses.
     plt.tight_layout()
     plt.show()
 
+    # Add inset
+    squid_ch, opm_ch = squid_chs[0], opm_chs[0]
+    inset_ax = axes[0].inset_axes([0.25, 0.5, 0.08, 0.45],
+                                  xlim=(10, 30), ylim=(-150, 200),
+                                  xticks=[], yticks=[])
+    inset_ax.plot(evoked_opm.times * 1e3,
+                  evoked_opm.copy().pick([opm_ch]).data[0] * scale,
+                  '#e66101')
+    inset_ax.plot(evoked_squid.times * 1e3,
+                  evoked_squid.copy().pick([squid_ch]).data[0] * scale,
+                  '#5e3c99')
+    for spine in inset_ax.spines.values():
+        spine.set_linestyle('dotted')
+    axes[0].indicate_inset_zoom(inset_ax, edgecolor='black', linestyle='dotted')
+
 
 
 .. image-sg:: /auto_examples/images/sphx_glr_plot_compare_sef_003.png
@@ -1154,16 +1570,17 @@ OPM-MEG and SQUID-MEG and compare the evoked responses.
 
  .. code-block:: none
 
-    No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
-    No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+    /Users/mainak/Desktop/04_github_repos/opm_coils/examples/plot_compare_sef.py:156: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+      ax.legend()
 
+    (<matplotlib.patches.Rectangle object at 0x1af679bb0>, (<matplotlib.patches.ConnectionPatch object at 0x1af679d90>, <matplotlib.patches.ConnectionPatch object at 0x1af6a6130>, <matplotlib.patches.ConnectionPatch object at 0x1af6797f0>, <matplotlib.patches.ConnectionPatch object at 0x1af6a66d0>))
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 11.586 seconds)
+   **Total running time of the script:** (0 minutes 15.769 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_compare_sef.py:
@@ -1172,16 +1589,17 @@ OPM-MEG and SQUID-MEG and compare the evoked responses.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_compare_sef.ipynb <plot_compare_sef.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_compare_sef.py <plot_compare_sef.py>`
 
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
+    .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download Jupyter notebook: plot_compare_sef.ipynb <plot_compare_sef.ipynb>`
+      :download:`Download zipped: plot_compare_sef.zip <plot_compare_sef.zip>`
 
 
 .. only:: html

@@ -30,9 +30,9 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -44,7 +44,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=fd10adb8"></script>
@@ -383,66 +383,71 @@
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-make-coil-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="design-biplanar-coils">
 <span id="sphx-glr-auto-examples-plot-make-coil-py"></span><h1>01. Design biplanar coils<a class="headerlink" href="#design-biplanar-coils" title="Link to this heading">#</a></h1>
 <p>Example demonstrating how to create biplanar coils for production.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Mainak Jas &lt;mjas@mgh.harvard.edu&gt;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Mainak Jas &lt;mjas@mgh.harvard.edu&gt;</span>
 <span class="c1">#          Padma Sundaram &lt;padma@nmr.mgh.harvard.edu&gt;</span>
 
 <span class="c1"># First, we will import the necessary libraries</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">bfieldtools.utils</span> <span class="kn">import</span> <span class="n">load_example_mesh</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bfieldtools.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_example_mesh</span>
 
-<span class="kn">import</span> <span class="nn">opmcoils</span>
-<span class="kn">from</span> <span class="nn">opmcoils</span> <span class="kn">import</span> <span class="n">BiplanarCoil</span><span class="p">,</span> <span class="n">get_sphere_points</span><span class="p">,</span> <span class="n">get_target_field</span>
-<span class="kn">from</span> <span class="nn">opmcoils.shielding</span> <span class="kn">import</span> <span class="n">shielded_room</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">opmcoils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opmcoils</span><span class="w"> </span><span class="kn">import</span> <span class="n">BiplanarCoil</span><span class="p">,</span> <span class="n">get_sphere_points</span><span class="p">,</span> <span class="n">get_target_field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opmcoils.shielding</span><span class="w"> </span><span class="kn">import</span> <span class="n">shielded_room</span>
 
 <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_suh</span></a> <span class="o">=</span> <span class="mi">50</span>
 <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_contours</span></a> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># Use N_contours = 30 for gradient_z</span>
 <a href="https://docs.python.org/3/library/functions.html#bool" title="builtins.bool" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save</span></a> <span class="o">=</span> <span class="kc">False</span>
 
 <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">center</span></a> <span class="o">=</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a> <span class="o">=</span> <span class="s1">&#39;dc_y&#39;</span>  <span class="c1"># &#39;gradient_x&#39; | &#39;gradient_y&#39; | &#39;dc_x&#39; | &#39;dc_y&#39;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a> <span class="o">=</span> <span class="s1">&#39;gradient_yz&#39;</span>  <span class="c1"># &#39;gradient_xx&#39; | &#39;gradient_xy&#39; | &#39;dc_x&#39; | &#39;dc_y&#39;</span>
 </pre></div>
 </div>
 <p>Next we define the output directory containing the kicad files for our
 PCB design.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pcb_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">opmcoils</span><span class="o">.</span><span class="n">__path__</span></a><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pcb_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">opmcoils</span><span class="o">.</span><span class="n">__path__</span></a><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output_dir</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dc_x&#39;</span><span class="p">:</span> <span class="s1">&#39;Bx_coil&#39;</span><span class="p">,</span>
               <span class="s1">&#39;dc_y&#39;</span><span class="p">:</span> <span class="s1">&#39;By_coil_dev&#39;</span><span class="p">,</span>
               <span class="s1">&#39;dc_z&#39;</span><span class="p">:</span> <span class="s1">&#39;Bz_coil&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;gradient_x&#39;</span><span class="p">:</span> <span class="s1">&#39;Gx_coil&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;gradient_y&#39;</span><span class="p">:</span> <span class="s1">&#39;Gy_coil&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;gradient_z&#39;</span><span class="p">:</span> <span class="s1">&#39;Gz_coil&#39;</span><span class="p">}</span>
+              <span class="s1">&#39;gradient_xz&#39;</span><span class="p">:</span> <span class="s1">&#39;Gx_coil&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;gradient_yz&#39;</span><span class="p">:</span> <span class="s1">&#39;Gy_coil&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;gradient_zz&#39;</span><span class="p">:</span> <span class="s1">&#39;Gz_coil&#39;</span><span class="p">}</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header_type</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dc_x&#39;</span><span class="p">:</span> <span class="s1">&#39;vert&#39;</span><span class="p">,</span>
                <span class="s1">&#39;dc_y&#39;</span><span class="p">:</span> <span class="s1">&#39;horz&#39;</span><span class="p">,</span>
                <span class="s1">&#39;dc_z&#39;</span><span class="p">:</span> <span class="s1">&#39;vert&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;gradient_x&#39;</span><span class="p">:</span> <span class="s1">&#39;vert&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;gradient_y&#39;</span><span class="p">:</span> <span class="s1">&#39;horz&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;gradient_z&#39;</span><span class="p">:</span> <span class="s1">&#39;vert&#39;</span><span class="p">}</span>
+               <span class="s1">&#39;gradient_xz&#39;</span><span class="p">:</span> <span class="s1">&#39;vert&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gradient_yz&#39;</span><span class="p">:</span> <span class="s1">&#39;horz&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gradient_zz&#39;</span><span class="p">:</span> <span class="s1">&#39;vert&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gradient_xx&#39;</span><span class="p">:</span> <span class="s1">&#39;horz&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gradient_xy&#39;</span><span class="p">:</span> <span class="s1">&#39;horz&#39;</span><span class="p">}</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bounds_wholeloop</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dc_x&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
                     <span class="s1">&#39;dc_y&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
                     <span class="s1">&#39;dc_z&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-                    <span class="s1">&#39;gradient_x&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-                    <span class="s1">&#39;gradient_y&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-                    <span class="s1">&#39;gradient_z&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+                    <span class="s1">&#39;gradient_xz&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s1">&#39;gradient_yz&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                    <span class="s1">&#39;gradient_zz&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Next we will define the parameters of our coils</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">standoffs</span></a> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dc_y&quot;</span><span class="p">:</span> <span class="mf">0.1400</span><span class="p">,</span> <span class="s2">&quot;gradient_y&quot;</span><span class="p">:</span> <span class="mf">0.1408</span><span class="p">,</span>
-             <span class="s2">&quot;dc_x&quot;</span><span class="p">:</span> <span class="mf">0.1416</span><span class="p">,</span> <span class="s2">&quot;gradient_x&quot;</span><span class="p">:</span> <span class="mf">0.1424</span><span class="p">,</span>
-             <span class="s2">&quot;dc_z&quot;</span><span class="p">:</span> <span class="mf">0.1432</span><span class="p">,</span> <span class="s2">&quot;gradient_z&quot;</span><span class="p">:</span> <span class="mf">0.1440</span><span class="p">}</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">standoffs</span></a> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dc_y&quot;</span><span class="p">:</span> <span class="mf">0.1400</span><span class="p">,</span> <span class="s2">&quot;gradient_yz&quot;</span><span class="p">:</span> <span class="mf">0.1408</span><span class="p">,</span>
+             <span class="s2">&quot;dc_x&quot;</span><span class="p">:</span> <span class="mf">0.1416</span><span class="p">,</span> <span class="s2">&quot;gradient_xz&quot;</span><span class="p">:</span> <span class="mf">0.1424</span><span class="p">,</span>
+             <span class="s2">&quot;dc_z&quot;</span><span class="p">:</span> <span class="mf">0.1432</span><span class="p">,</span> <span class="s2">&quot;gradient_zz&quot;</span><span class="p">:</span> <span class="mf">0.1440</span><span class="p">,</span>
+                             <span class="s2">&quot;gradient_xx&quot;</span><span class="p">:</span> <span class="mf">0.1456</span><span class="p">,</span>
+                             <span class="s2">&quot;gradient_xy&quot;</span><span class="p">:</span> <span class="mf">0.1472</span><span class="p">}</span>
 
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling</span></a> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dc_y&quot;</span><span class="p">:</span> <span class="mf">0.1400</span><span class="p">,</span> <span class="s2">&quot;gradient_y&quot;</span><span class="p">:</span> <span class="mf">0.1420</span><span class="p">,</span>
-           <span class="s2">&quot;dc_x&quot;</span><span class="p">:</span> <span class="mf">0.1420</span><span class="p">,</span> <span class="s2">&quot;gradient_x&quot;</span><span class="p">:</span> <span class="mf">0.1436</span><span class="p">,</span>
-           <span class="s2">&quot;dc_z&quot;</span><span class="p">:</span> <span class="mf">0.1441</span><span class="p">,</span> <span class="s2">&quot;gradient_z&quot;</span><span class="p">:</span> <span class="mf">0.14565</span><span class="p">}</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling</span></a> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dc_y&quot;</span><span class="p">:</span> <span class="mf">0.1400</span><span class="p">,</span> <span class="s2">&quot;gradient_yz&quot;</span><span class="p">:</span> <span class="mf">0.1420</span><span class="p">,</span>
+           <span class="s2">&quot;dc_x&quot;</span><span class="p">:</span> <span class="mf">0.1420</span><span class="p">,</span> <span class="s2">&quot;gradient_xz&quot;</span><span class="p">:</span> <span class="mf">0.1436</span><span class="p">,</span>
+           <span class="s2">&quot;dc_z&quot;</span><span class="p">:</span> <span class="mf">0.1441</span><span class="p">,</span> <span class="s2">&quot;gradient_zz&quot;</span><span class="p">:</span> <span class="mf">0.14565</span><span class="p">,</span>
+           <span class="s2">&quot;gradient_xx&quot;</span><span class="p">:</span> <span class="mf">0.146</span><span class="p">,</span> <span class="s2">&quot;gradient_xy&quot;</span><span class="p">:</span> <span class="mf">0.148</span><span class="p">}</span>  <span class="c1"># unsure how this was chosen?</span>
 
 <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">trace_width</span></a> <span class="o">=</span> <span class="mf">5.</span>  <span class="c1"># mm</span>
 <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cu_oz</span></a> <span class="o">=</span> <span class="mf">2.</span>  <span class="c1"># oz per ft^2</span>
@@ -451,18 +456,18 @@ PCB design.</p>
 <p>A 10 m x 10 m biplanar coil mesh is loaded from bfieldtools.
 We will scale the mesh so as to achieve the dimensions of
 1.4 m x 1.4 m that we will use in our work.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling_factor</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a><span class="p">]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling_factor</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a><span class="p">]</span>
 <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">standoff</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling_factor</span></a> <span class="o">*</span> <span class="mi">10</span>
 
 <span class="n">planemesh</span> <span class="o">=</span> <span class="n">load_example_mesh</span><span class="p">(</span><span class="s2">&quot;10x10_plane_hires&quot;</span><span class="p">)</span>
 <span class="n">planemesh</span><span class="o">.</span><span class="n">apply_scale</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scaling_factor</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;trimesh.Trimesh(vertices.shape=(1592, 3), faces.shape=(3038, 3), name=`10x10_plane_hires.obj`)&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;trimesh.Trimesh(vertices.shape=(1592, 3), faces.shape=(3038, 3))&gt;
 </pre></div>
 </div>
 <p>The BiplanarCoil class is instantiated</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coil</span> <span class="o">=</span> <span class="n">BiplanarCoil</span><span class="p">(</span><span class="n">planemesh</span><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">center</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_suh</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_suh</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">standoff</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">standoff</span></a><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">coil</span> <span class="o">=</span> <span class="n">BiplanarCoil</span><span class="p">(</span><span class="n">planemesh</span><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">center</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_suh</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_suh</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">standoff</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">standoff</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Calculating surface harmonics expansion...
@@ -474,154 +479,126 @@ Computing the mass matrix...
 </pre></div>
 </div>
 <p>Then the target points and the fields are used to fit the coil design</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">points_z</span></a> <span class="o">=</span> <span class="n">get_sphere_points</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">center</span></a><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sidelength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">points_z</span></a> <span class="o">=</span> <span class="n">get_sphere_points</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">center</span></a><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sidelength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_field</span></a> <span class="o">=</span> <span class="n">get_target_field</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">)</span>
 
 <span class="n">coil</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_field</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Computing magnetic field coupling matrix, 3184 vertices by 160 target points... took 0.37 seconds.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Computing magnetic field coupling matrix, 3184 vertices by 160 target points... took 0.32 seconds.
+mosek not available. Using bfieldtools default solver
 Computing the resistance matrix...
 Passing problem to solver...
 ===============================================================================
                                      CVXPY
-                                     v1.4.1
+                                     v1.6.0
 ===============================================================================
-(CVXPY) Feb 12 12:02:12 PM: Your problem has 100 variables, 2 constraints, and 0 parameters.
-(CVXPY) Feb 12 12:02:12 PM: It is compliant with the following grammars: DCP, DQCP
-(CVXPY) Feb 12 12:02:12 PM: (If you need to solve this problem multiple times, but with different data, consider using parameters.)
-(CVXPY) Feb 12 12:02:12 PM: CVXPY will first compile your problem; then, it will invoke a numerical solver to obtain a solution.
-(CVXPY) Feb 12 12:02:12 PM: Your problem is compiled with the CPP canonicalization backend.
+(CVXPY) Jun 10 05:21:58 PM: Your problem has 100 variables, 960 constraints, and 0 parameters.
+(CVXPY) Jun 10 05:21:58 PM: It is compliant with the following grammars: DCP, DQCP
+(CVXPY) Jun 10 05:21:58 PM: (If you need to solve this problem multiple times, but with different data, consider using parameters.)
+(CVXPY) Jun 10 05:21:58 PM: CVXPY will first compile your problem; then, it will invoke a numerical solver to obtain a solution.
+(CVXPY) Jun 10 05:21:58 PM: Your problem is compiled with the CPP canonicalization backend.
 -------------------------------------------------------------------------------
                                   Compilation
 -------------------------------------------------------------------------------
-(CVXPY) Feb 12 12:02:12 PM: Compiling problem (target solver=MOSEK).
-(CVXPY) Feb 12 12:02:12 PM: Reduction chain: Dcp2Cone -&gt; CvxAttr2Constr -&gt; ConeMatrixStuffing -&gt; MOSEK
-(CVXPY) Feb 12 12:02:12 PM: Applying reduction Dcp2Cone
-(CVXPY) Feb 12 12:02:12 PM: Applying reduction CvxAttr2Constr
-(CVXPY) Feb 12 12:02:12 PM: Applying reduction ConeMatrixStuffing
-(CVXPY) Feb 12 12:02:12 PM: Applying reduction MOSEK
-(CVXPY) Feb 12 12:02:12 PM: Finished problem compilation (took 2.939e-02 seconds).
+(CVXPY) Jun 10 05:21:58 PM: Compiling problem (target solver=OSQP).
+(CVXPY) Jun 10 05:21:58 PM: Reduction chain: CvxAttr2Constr -&gt; Qp2SymbolicQp -&gt; QpMatrixStuffing -&gt; OSQP
+(CVXPY) Jun 10 05:21:58 PM: Applying reduction CvxAttr2Constr
+(CVXPY) Jun 10 05:21:58 PM: Applying reduction Qp2SymbolicQp
+(CVXPY) Jun 10 05:21:58 PM: Applying reduction QpMatrixStuffing
+(CVXPY) Jun 10 05:21:58 PM: Applying reduction OSQP
+(CVXPY) Jun 10 05:21:58 PM: Finished problem compilation (took 5.551e-02 seconds).
 -------------------------------------------------------------------------------
                                 Numerical solver
 -------------------------------------------------------------------------------
-(CVXPY) Feb 12 12:02:12 PM: Invoking solver MOSEK  to obtain a solution.
+(CVXPY) Jun 10 05:21:58 PM: Invoking solver OSQP  to obtain a solution.
+-----------------------------------------------------------------
+           OSQP v0.6.3  -  Operator Splitting QP Solver
+              (c) Bartolomeo Stellato,  Goran Banjac
+        University of Oxford  -  Stanford University 2021
+-----------------------------------------------------------------
+problem:  variables n = 200, constraints m = 1060
+          nnz(P) + nnz(A) = 98749
+settings: linear system solver = qdldl,
+          eps_abs = 1.0e-05, eps_rel = 1.0e-05,
+          eps_prim_inf = 1.0e-04, eps_dual_inf = 1.0e-04,
+          rho = 1.00e-01 (adaptive),
+          sigma = 1.00e-06, alpha = 1.60, max_iter = 10000
+          check_termination: on (interval 25),
+          scaling: on, scaled_termination: off
+          warm start: on, polish: on, time_limit: off
 
+iter   objective    pri res    dua res    rho        time
+   1   0.0000e+00   9.75e-01   9.32e+00   1.00e-01   1.12e-02s
+ 200   1.6743e+02   8.79e-03   1.13e-02   5.77e-01   1.06e-01s
+ 400   1.7571e+02   3.08e-03   6.67e-03   5.77e-01   1.68e-01s
+ 600   1.7648e+02   1.88e-03   7.81e-05   5.77e-01   2.02e-01s
+ 800   1.7702e+02   7.07e-04   2.86e-03   4.44e+00   2.31e-01s
+1000   1.7735e+02   2.65e-04   1.02e-03   4.44e+00   2.56e-01s
+1125   1.7757e+02   7.63e-06   1.54e-05   8.45e-02   2.79e-01s
+plsh   1.7757e+02   1.34e-15   6.17e-15   --------   2.80e-01s
 
-/Users/mainak/anaconda3/envs/bfieldtools/lib/python3.9/site-packages/cvxpy/reductions/solvers/conic_solvers/mosek_conif.py:663: UserWarning:
-Using MOSEK constants to specify parameters is deprecated.
-Use generic string names instead.
-For example, replace mosek.iparam.num_threads with &#39;MSK_IPAR_NUM_THREADS&#39;
+status:               solved
+solution polish:      successful
+number of iterations: 1125
+optimal objective:    177.5710
+run time:             2.80e-01s
+optimal rho estimate: 9.47e-02
 
-  warnings.warn(__MSK_ENUM_PARAM_DEPRECATION__, UserWarning)
-(CVXPY) Feb 12 12:02:13 PM: Problem
-(CVXPY) Feb 12 12:02:13 PM:   Name                   :
-(CVXPY) Feb 12 12:02:13 PM:   Objective sense        : maximize
-(CVXPY) Feb 12 12:02:13 PM:   Type                   : CONIC (conic optimization problem)
-(CVXPY) Feb 12 12:02:13 PM:   Constraints            : 101
-(CVXPY) Feb 12 12:02:13 PM:   Affine conic cons.     : 0
-(CVXPY) Feb 12 12:02:13 PM:   Disjunctive cons.      : 0
-(CVXPY) Feb 12 12:02:13 PM:   Cones                  : 1
-(CVXPY) Feb 12 12:02:13 PM:   Scalar variables       : 1062
-(CVXPY) Feb 12 12:02:13 PM:   Matrix variables       : 0
-(CVXPY) Feb 12 12:02:13 PM:   Integer variables      : 0
-(CVXPY) Feb 12 12:02:13 PM:
-(CVXPY) Feb 12 12:02:13 PM: Optimizer started.
-(CVXPY) Feb 12 12:02:13 PM: Presolve started.
-(CVXPY) Feb 12 12:02:13 PM: Linear dependency checker started.
-(CVXPY) Feb 12 12:02:13 PM: Linear dependency checker terminated.
-(CVXPY) Feb 12 12:02:13 PM: Eliminator started.
-(CVXPY) Feb 12 12:02:13 PM: Freed constraints in eliminator : 0
-(CVXPY) Feb 12 12:02:13 PM: Eliminator terminated.
-(CVXPY) Feb 12 12:02:13 PM: Eliminator - tries                  : 1                 time                   : 0.00
-(CVXPY) Feb 12 12:02:13 PM: Lin. dep.  - tries                  : 1                 time                   : 0.00
-(CVXPY) Feb 12 12:02:13 PM: Lin. dep.  - primal attempts        : 1                 successes              : 1
-(CVXPY) Feb 12 12:02:13 PM: Lin. dep.  - dual attempts          : 0                 successes              : 0
-(CVXPY) Feb 12 12:02:13 PM: Lin. dep.  - primal deps.           : 0                 dual deps.             : 0
-(CVXPY) Feb 12 12:02:13 PM: Presolve terminated. Time: 0.01
-(CVXPY) Feb 12 12:02:13 PM: Optimizer  - threads                : 8
-(CVXPY) Feb 12 12:02:13 PM: Optimizer  - solved problem         : the primal
-(CVXPY) Feb 12 12:02:13 PM: Optimizer  - Constraints            : 101
-(CVXPY) Feb 12 12:02:13 PM: Optimizer  - Cones                  : 1
-(CVXPY) Feb 12 12:02:13 PM: Optimizer  - Scalar variables       : 1062              conic                  : 102
-(CVXPY) Feb 12 12:02:13 PM: Optimizer  - Semi-definite variables: 0                 scalarized             : 0
-(CVXPY) Feb 12 12:02:13 PM: Factor     - setup time             : 0.01
-(CVXPY) Feb 12 12:02:13 PM: Factor     - dense det. time        : 0.00              GP order time          : 0.00
-(CVXPY) Feb 12 12:02:13 PM: Factor     - nonzeros before factor : 5151              after factor           : 5151
-(CVXPY) Feb 12 12:02:13 PM: Factor     - dense dim.             : 0                 flops                  : 5.21e+06
-(CVXPY) Feb 12 12:02:13 PM: ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME
-(CVXPY) Feb 12 12:02:13 PM: 0   1.0e+00  3.3e+01  2.0e+00  0.00e+00   -1.000000000e+00  -0.000000000e+00  1.0e+00  0.03
-(CVXPY) Feb 12 12:02:13 PM: 1   6.2e-01  2.0e+01  1.2e+00  -3.67e-01  8.074102027e+00   8.717140478e+00   6.2e-01  0.05
-(CVXPY) Feb 12 12:02:13 PM: 2   3.8e-01  1.3e+01  6.2e-01  -3.32e-01  3.854016341e+01   3.898638953e+01   3.8e-01  0.05
-(CVXPY) Feb 12 12:02:13 PM: 3   3.6e-01  1.2e+01  5.7e-01  8.21e-01   5.206605879e+01   5.248526896e+01   3.6e-01  0.05
-(CVXPY) Feb 12 12:02:13 PM: 4   1.7e-01  5.6e+00  1.6e-01  1.79e+00   1.066982891e+02   1.068317814e+02   1.7e-01  0.05
-(CVXPY) Feb 12 12:02:13 PM: 5   3.1e-02  1.0e+00  3.1e-02  1.05e+00   1.501850630e+02   1.500705013e+02   3.1e-02  0.05
-(CVXPY) Feb 12 12:02:13 PM: 6   1.3e-02  4.1e-01  1.2e-02  -2.45e-01  1.944314242e+02   1.942993967e+02   1.3e-02  0.05
-(CVXPY) Feb 12 12:02:13 PM: 7   5.0e-03  1.6e-01  3.0e-03  4.10e-01   2.496052248e+02   2.495539387e+02   5.0e-03  0.05
-(CVXPY) Feb 12 12:02:13 PM: 8   7.4e-04  2.4e-02  2.1e-04  8.56e-01   2.962092237e+02   2.961967180e+02   7.4e-04  0.06
-(CVXPY) Feb 12 12:02:13 PM: 9   1.4e-04  4.6e-03  1.5e-05  9.24e-01   3.062824194e+02   3.062810007e+02   1.4e-04  0.06
-(CVXPY) Feb 12 12:02:13 PM: 10  2.3e-05  7.7e-04  1.1e-06  9.68e-01   3.083219504e+02   3.083216445e+02   2.3e-05  0.06
-(CVXPY) Feb 12 12:02:13 PM: 11  1.7e-08  5.4e-07  2.0e-11  9.99e-01   3.087298312e+02   3.087298310e+02   1.7e-08  0.06
-(CVXPY) Feb 12 12:02:13 PM: 12  6.4e-10  3.7e-09  3.9e-13  1.00e+00   3.087301435e+02   3.087301433e+02   4.3e-12  0.07
-(CVXPY) Feb 12 12:02:13 PM: Optimizer terminated. Time: 0.07
-(CVXPY) Feb 12 12:02:13 PM:
-(CVXPY) Feb 12 12:02:13 PM:
-(CVXPY) Feb 12 12:02:13 PM: Interior-point solution summary
-(CVXPY) Feb 12 12:02:13 PM:   Problem status  : PRIMAL_AND_DUAL_FEASIBLE
-(CVXPY) Feb 12 12:02:13 PM:   Solution status : OPTIMAL
-(CVXPY) Feb 12 12:02:13 PM:   Primal.  obj: 3.0873014354e+02    nrm: 1e+03    Viol.  con: 4e-09    var: 0e+00    cones: 0e+00
-(CVXPY) Feb 12 12:02:13 PM:   Dual.    obj: 3.0873014335e+02    nrm: 6e+02    Viol.  con: 0e+00    var: 2e-08    cones: 0e+00
 -------------------------------------------------------------------------------
                                     Summary
 -------------------------------------------------------------------------------
-(CVXPY) Feb 12 12:02:13 PM: Problem status: optimal
-(CVXPY) Feb 12 12:02:13 PM: Optimal value: 3.087e+02
-(CVXPY) Feb 12 12:02:13 PM: Compilation took 2.939e-02 seconds
-(CVXPY) Feb 12 12:02:13 PM: Solver (including time spent in interface) took 1.217e-01 seconds
+(CVXPY) Jun 10 05:21:58 PM: Problem status: optimal
+(CVXPY) Jun 10 05:21:58 PM: Optimal value: 1.776e+02
+(CVXPY) Jun 10 05:21:58 PM: Compilation took 5.551e-02 seconds
+(CVXPY) Jun 10 05:21:58 PM: Solver (including time spent in interface) took 2.836e-01 seconds
 </pre></div>
 </div>
 <p>Then, we can discretize the coil into current loops. At this point,
 we can also specify the trace width and the copper thickness used
 in the PCB design.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coil</span><span class="o">.</span><span class="n">discretize</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_contours</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_contours</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">trace_width</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">trace_width</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cu_oz</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cu_oz</span></a><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">coil</span><span class="o">.</span><span class="n">discretize</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_contours</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">N_contours</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">trace_width</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">trace_width</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cu_oz</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cu_oz</span></a><span class="p">)</span>
+<span class="n">coil</span><span class="o">.</span><span class="n">plot_coil</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Processing contour, value: -9955702.158503016
-Processing contour, value: -9268942.937399967
-Processing contour, value: -8582183.716296915
-Processing contour, value: -7895424.495193865
-Processing contour, value: -7208665.274090815
-Processing contour, value: -6521906.052987765
-Processing contour, value: -5835146.831884715
-Processing contour, value: -5148387.610781664
-Processing contour, value: -4461628.389678614
-Processing contour, value: -3774869.1685755635
-Processing contour, value: -3088109.9474725137
-Processing contour, value: -2401350.726369463
-Processing contour, value: -1714591.505266413
-Processing contour, value: -1027832.2841633633
-Processing contour, value: -341073.0630603116
-Processing contour, value: 345686.1580427382
-Processing contour, value: 1032445.379145788
-Processing contour, value: 1719204.6002488378
-Processing contour, value: 2405963.8213518895
-Processing contour, value: 3092723.0424549393
-Processing contour, value: 3779482.263557989
-Processing contour, value: 4466241.484661039
-Processing contour, value: 5153000.705764091
-Processing contour, value: 5839759.92686714
-Processing contour, value: 6526519.14797019
-Processing contour, value: 7213278.36907324
-Processing contour, value: 7900037.59017629
-Processing contour, value: 8586796.81127934
-Processing contour, value: 9273556.032382393
-Processing contour, value: 9960315.253485443
+<img src="../_images/sphx_glr_plot_make_coil_001.png" srcset="../_images/sphx_glr_plot_make_coil_001.png" alt="plot make coil" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Processing contour, value: -10542141.429055808
+Processing contour, value: -9815097.1925692
+Processing contour, value: -9088052.956082592
+Processing contour, value: -8361008.719595984
+Processing contour, value: -7633964.483109375
+Processing contour, value: -6906920.246622768
+Processing contour, value: -6179876.01013616
+Processing contour, value: -5452831.773649553
+Processing contour, value: -4725787.537162945
+Processing contour, value: -3998743.3006763374
+Processing contour, value: -3271699.0641897293
+Processing contour, value: -2544654.827703121
+Processing contour, value: -1817610.591216514
+Processing contour, value: -1090566.3547299057
+Processing contour, value: -363522.11824329756
+Processing contour, value: 363522.1182433106
+Processing contour, value: 1090566.354729917
+Processing contour, value: 1817610.591216525
+Processing contour, value: 2544654.827703133
+Processing contour, value: 3271699.0641897414
+Processing contour, value: 3998743.3006763496
+Processing contour, value: 4725787.537162956
+Processing contour, value: 5452831.773649564
+Processing contour, value: 6179876.010136174
+Processing contour, value: 6906920.24662278
+Processing contour, value: 7633964.483109387
+Processing contour, value: 8361008.719595997
+Processing contour, value: 9088052.956082603
+Processing contour, value: 9815097.192569213
+Processing contour, value: 10542141.42905582
+
+&lt;pyvista.plotting.plotter.Plotter object at 0x1abb14c10&gt;
 </pre></div>
 </div>
 <p>To evaluate the effect of the shielded room, we can add it to the coil
 specification and it will be taken into account for estimating the
 magnetic field at any point</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">room_dims</span></a> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">room_dims</span></a> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.</span><span class="p">)</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coil_pos</span></a> <span class="o">=</span> <span class="p">(</span><span class="mf">1.89</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">)</span>
 <span class="n">shield_mesh</span> <span class="o">=</span> <span class="n">shielded_room</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">room_dims</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">room_dims</span></a><span class="p">,</span>
                             <a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coil_pos</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coil_pos</span></a><span class="p">)</span>
@@ -629,66 +606,66 @@ magnetic field at any point</p>
 </pre></div>
 </div>
 <p>The field at some target points can be computed by doing</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">B_target</span></a> <span class="o">=</span> <span class="n">coil</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">B_target</span></a> <span class="o">=</span> <span class="n">coil</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Computing effect of shielded room
-Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.44 seconds.
-Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 15.99 seconds.
-Computing scalar potential coupling matrix, 3184 vertices by 4056 target points... took 12.11 seconds.
+Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.49 seconds.
+Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 19.54 seconds.
+Computing scalar potential coupling matrix, 3184 vertices by 4056 target points... took 15.88 seconds.
 Done
 </pre></div>
 </div>
 <p>The field can be computed and plotted by doing</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span> <span class="o">=</span> <span class="n">coil</span><span class="o">.</span><span class="n">plot_field</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span> <span class="o">=</span> <span class="n">coil</span><span class="o">.</span><span class="n">plot_field</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_make_coil_001.png" srcset="../_images/sphx_glr_plot_make_coil_001.png" alt="plot make coil" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Computing effect of shielded room
-Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.50 seconds.
-Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 15.24 seconds.
+<img src="../_images/sphx_glr_plot_make_coil_002.png" srcset="../_images/sphx_glr_plot_make_coil_002.png" alt="plot make coil" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Computing effect of shielded room
+Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.54 seconds.
+Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 25.75 seconds.
 Done
 </pre></div>
 </div>
 <p>We can evaluate the coil for metrics such as efficiency
 and also compute its dimensions by doing</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">metrics</span></a> <span class="o">=</span> <span class="n">coil</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_field</span></a><span class="p">,</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">metrics</span></a> <span class="o">=</span> <span class="n">coil</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_points</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_field</span></a><span class="p">,</span>
                         <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">points_z</span></a><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">metrics</span></a><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The coil has dimensions </span><span class="si">{</span><span class="n">coil</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1"> m&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Computing magnetic field coupling matrix, 3184 vertices by 8 target points... took 0.02 seconds.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Computing magnetic field coupling matrix, 3184 vertices by 8 target points... took 0.03 seconds.
+Computing effect of shielded room
+Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.53 seconds.
+Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 25.39 seconds.
+Done
+Computing effect of shielded room
+Computing magnetic field coupling matrix, 4056 vertices by 8 target points... took 0.05 seconds.
+Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 21.82 seconds.
+Done
 Computing effect of shielded room
 Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.38 seconds.
-Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 15.90 seconds.
+Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 18.62 seconds.
 Done
 Computing effect of shielded room
-Computing magnetic field coupling matrix, 4056 vertices by 8 target points... took 0.03 seconds.
-Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 15.47 seconds.
-Done
-Computing effect of shielded room
-Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.37 seconds.
-Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 15.68 seconds.
-Done
-Computing effect of shielded room
-Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.36 seconds.
-Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 15.40 seconds.
+Computing magnetic field coupling matrix, 4056 vertices by 160 target points... took 0.39 seconds.
+Computing scalar potential coupling matrix, 4056 vertices by 4056 target points... took 16.81 seconds.
 Done
 Computing the inductance matrix...
 Computing self-inductance matrix using rough quadrature (degree=2).              For higher accuracy, set quad_degree to 4 or more.
 Estimating 34964 MiB required for 3184 by 3184 vertices...
-Computing inductance matrix in 1460 chunks (480 MiB memory free),              when approx_far=True using more chunks is faster...
+Computing inductance matrix in 1540 chunks (458 MiB memory free),              when approx_far=True using more chunks is faster...
 Computing triangle-coupling matrix
-Inductance matrix computation took 17.79 seconds.
-{&#39;efficiency (nT/mA)&#39;: 1.3180748522426806, &#39;error&#39;: 1.3180748522426806, &#39;homogeneity (%)&#39;: 0.0, &#39;inductance (uH)&#39;: 17672.107606218706, &#39;resistance (ohm)&#39;: 10.530855709785541, &#39;length (m)&#39;: 214.2906685130779, &#39;target radius (cm)&#39;: 17.857142857142854}
-The coil has dimensions (1.3961729358002248, 1.398193800411589) m
+Inductance matrix computation took 18.53 seconds.
+{&#39;efficiency (nT/mA)&#39;: np.float64(7.890119425194119), &#39;error&#39;: np.float64(7.890119425194119), &#39;homogeneity (%)&#39;: np.float64(40.0), &#39;inductance (uH)&#39;: np.float64(4431.833804080511), &#39;resistance (ohm)&#39;: 7.671165403006107, &#39;length (m)&#39;: 156.09929599140335, &#39;target radius (cm)&#39;: np.float64(17.857142857142854)}
+The coil has dimensions (np.float64(1.4001021891704468), np.float64(1.4166831163442335)) m
 </pre></div>
 </div>
 <p>We can now interactively create paths to join the loops in the discretized coils
 by making “cuts”. Uncomment below to use it.
 coil.make_cuts()</p>
 <p>Finally, we can export the files to KiCad</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kicad_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.cwd" title="pathlib.Path.cwd" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span></a><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;hardware&#39;</span> <span class="o">/</span> <span class="s1">&#39;template&#39;</span> <span class="o">/</span> <span class="s1">&#39;headers&#39;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kicad_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.cwd" title="pathlib.Path.cwd" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span></a><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;hardware&#39;</span> <span class="o">/</span> <span class="s1">&#39;template&#39;</span> <span class="o">/</span> <span class="s1">&#39;headers&#39;</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pcb_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.cwd" title="pathlib.Path.cwd" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span></a><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;hardware&#39;</span>
 <span class="k">if</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header_type</span></a><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_type</span></a><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vert&#39;</span><span class="p">:</span>
     <span class="n">coil</span><span class="o">.</span><a href="https://docs.python.org/3/library/functions.html#bool" title="builtins.bool" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save</span></a><span class="p">(</span>
@@ -714,22 +691,25 @@ coil.make_cuts()</p>
         <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">750</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="o">-</span><span class="mi">750</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">750</span><span class="p">,</span> <span class="mi">750</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>export to kicad /Users/mainak/Desktop/github_repos/cmeg_coil_design/hardware/By_coil_dev/first/coil_template_first.kicad_pcb:
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>export to kicad /Users/mainak/Desktop/04_github_repos/opm_coils/hardware/Gy_coil/first/coil_template_first.kicad_pcb:
 
 done
 
-export to kicad /Users/mainak/Desktop/github_repos/cmeg_coil_design/hardware/By_coil_dev/second/coil_template_second.kicad_pcb:
+export to kicad /Users/mainak/Desktop/04_github_repos/opm_coils/hardware/Gy_coil/second/coil_template_second.kicad_pcb:
 
 done
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (2 minutes 20.669 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (3 minutes 18.230 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-make-coil-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/b0b9e51f06e7414828a2a1f2abc85715/plot_make_coil.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_make_coil.ipynb</span></code></a></p>
+</div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/3946c06d92b0e660a732ee00073ba5ac/plot_make_coil.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_make_coil.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/b0b9e51f06e7414828a2a1f2abc85715/plot_make_coil.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_make_coil.ipynb</span></code></a></p>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/7d9e6dc59005c2fd5cfd24375f35c483/plot_make_coil.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_make_coil.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -778,7 +758,7 @@ done
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>

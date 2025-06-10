@@ -30,9 +30,9 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -44,7 +44,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=fd10adb8"></script>
@@ -372,20 +372,20 @@ to download the full example code</p>
 <p class="sphx-glr-example-title" id="sphx-glr-auto-examples-evaluate-pcb-py">Example demonstrating how to load Kicad PCBs and evaluate their performance.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Mainak Jas &lt;mjas@mgh.harvard.edu&gt;</span>
 <span class="c1">#          Padma Sundaram &lt;padma@nmr.mgh.harvard.edu&gt;</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">opm_coils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_sphere_points</span><span class="p">,</span> <span class="n">get_2D_point_grid</span><span class="p">,</span> <span class="n">PCBPanel</span><span class="p">,</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opm_coils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">get_sphere_points</span><span class="p">,</span> <span class="n">get_2D_point_grid</span><span class="p">,</span> <span class="n">PCBPanel</span><span class="p">,</span>
                        <span class="n">plot_field_colormap</span><span class="p">,</span> <span class="n">plot_field_arrows</span><span class="p">,</span> <span class="n">load_panel</span><span class="p">,</span>
                        <span class="n">plot_panel</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">opm_coils.panels</span> <span class="kn">import</span> <span class="p">(</span><span class="n">flip_chains</span><span class="p">,</span> <span class="n">flip_chain</span><span class="p">,</span> <span class="n">plot_combined_panels</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opm_coils.panels</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">flip_chains</span><span class="p">,</span> <span class="n">flip_chain</span><span class="p">,</span> <span class="n">plot_combined_panels</span><span class="p">,</span>
                               <span class="n">check_half_names</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">h5io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5io</span>
 
 
-<span class="k">def</span> <span class="nf">prod_By</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prod_By</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads and plots the By panel&quot;&quot;&quot;</span>
     <span class="n">pcb_folder</span> <span class="o">=</span> <span class="s1">&#39;production/By_coil&#39;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=-</span><span class="mf">1e-3</span><span class="p">)</span>
@@ -401,7 +401,7 @@ to download the full example code</p>
     <span class="k">return</span> <span class="n">panel</span>
 
 
-<span class="k">def</span> <span class="nf">dev_Gy</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dev_Gy</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads and plots the Gy panel&quot;&quot;&quot;</span>
     <span class="n">pcb_folder</span> <span class="o">=</span> <span class="s1">&#39;development/Gy_coil&#39;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
@@ -416,7 +416,7 @@ to download the full example code</p>
     <span class="k">return</span> <span class="n">panel</span>
 
 
-<span class="k">def</span> <span class="nf">dev_Bx</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dev_Bx</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads and plots the Bx panel&quot;&quot;&quot;</span>
     <span class="n">pcb_folder</span> <span class="o">=</span> <span class="s1">&#39;development/Bx_coil&#39;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
@@ -430,7 +430,7 @@ to download the full example code</p>
     <span class="k">return</span> <span class="n">panel</span>
 
 
-<span class="k">def</span> <span class="nf">dev_Gx</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dev_Gx</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads and plots the Gx panel&quot;&quot;&quot;</span>
     <span class="n">pcb_folder</span> <span class="o">=</span> <span class="s1">&#39;development/Gx_coil&#39;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=-</span><span class="mf">1e-3</span><span class="p">)</span>
@@ -444,7 +444,7 @@ to download the full example code</p>
 
     <span class="k">return</span> <span class="n">panel</span>
 
-<span class="k">def</span> <span class="nf">dev_Bz</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dev_Bz</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads and plots the Bz panel&quot;&quot;&quot;</span>
     <span class="n">pcb_folder</span> <span class="o">=</span> <span class="s1">&#39;development/Bz_coil&#39;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
@@ -466,7 +466,7 @@ to download the full example code</p>
     <span class="k">return</span> <span class="n">panel</span>
 
 
-<span class="k">def</span> <span class="nf">dev_Gz</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dev_Gz</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads and plots the Gz panel&quot;&quot;&quot;</span>
     <span class="n">pcb_folder</span> <span class="o">=</span> <span class="s1">&#39;development/Gz_coil&#39;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">right</span><span class="o">=-</span><span class="mf">1e-3</span><span class="p">)</span>
@@ -490,7 +490,7 @@ to download the full example code</p>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser" title="argparse.ArgumentParser" class="sphx-glr-backref-module-argparse sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span></a><span class="p">()</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;pcb_path&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to pcb project files.&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--rearrange&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
@@ -509,7 +509,7 @@ to download the full example code</p>
         <span class="n">rearrange</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="n">pcb_folder</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">pcb_path</span> <span class="ow">and</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.exists" title="os.path.exists" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span></a><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">pcb_path</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">pcb_path</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">pcb_path</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
         <span class="n">half_names</span> <span class="o">=</span> <span class="n">check_half_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">pcb_path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">half_names</span><span class="p">:</span>
             <span class="n">pcb_folder</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pcb_path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -549,7 +549,7 @@ to download the full example code</p>
 
         <span class="n">plot_panel</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="mf">.7</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">current</span><span class="o">=</span><span class="n">current</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="n">gradient</span><span class="p">)</span>
 
-    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
     <span class="c1"># # 3D plot of B coils</span>
     <span class="c1"># plot_combined_panels([panels[&#39;By&#39;],</span>
@@ -670,7 +670,7 @@ to download the full example code</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>

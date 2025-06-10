@@ -1,12 +1,12 @@
 
 :orphan:
 
-.. _sphx_glr_auto_examples_sg_execution_times:
+.. _sphx_glr_sg_execution_times:
 
 
 Computation times
 =================
-**00:15.769** total execution time for 6 files **from auto_examples**:
+**00:15.769** total execution time for 6 files **from all galleries**:
 
 .. container::
 
@@ -32,21 +32,21 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_plot_compare_sef.py` (``plot_compare_sef.py``)
+   * - :ref:`sphx_glr_auto_examples_plot_compare_sef.py` (``../examples/plot_compare_sef.py``)
      - 00:15.769
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_plot_helmet.py` (``plot_helmet.py``)
+   * - :ref:`sphx_glr_auto_examples_plot_helmet.py` (``../examples/plot_helmet.py``)
      - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_plot_make_coil.py` (``plot_make_coil.py``)
+   * - :ref:`sphx_glr_auto_examples_plot_make_coil.py` (``../examples/plot_make_coil.py``)
      - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_plot_pcb_io.py` (``plot_pcb_io.py``)
+   * - :ref:`sphx_glr_auto_examples_plot_pcb_io.py` (``../examples/plot_pcb_io.py``)
      - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_plot_pcb_viz.py` (``plot_pcb_viz.py``)
+   * - :ref:`sphx_glr_auto_examples_plot_pcb_viz.py` (``../examples/plot_pcb_viz.py``)
      - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_plot_planar_map.py` (``plot_planar_map.py``)
+   * - :ref:`sphx_glr_auto_examples_plot_planar_map.py` (``../examples/plot_planar_map.py``)
      - 00:00.000
      - 0.0

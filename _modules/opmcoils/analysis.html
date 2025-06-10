@@ -29,9 +29,9 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=fd10adb8"></script>
@@ -365,13 +365,13 @@
   <h1>Source code for opmcoils.analysis</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Author: Mainak Jas &lt;mainakjas@gmail.com&gt;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">mne</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mne</span>
 
 
 <div class="viewcode-block" id="add_ch_loc">
 <a class="viewcode-back" href="../../generated/opmcoils.analysis.add_ch_loc.html#opmcoils.analysis.add_ch_loc">[docs]</a>
-<span class="k">def</span> <span class="nf">add_ch_loc</span><span class="p">(</span><span class="n">raws</span><span class="p">,</span> <span class="n">info_helmet</span><span class="p">,</span> <span class="n">ch_mapping</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_ch_loc</span><span class="p">(</span><span class="n">raws</span><span class="p">,</span> <span class="n">info_helmet</span><span class="p">,</span> <span class="n">ch_mapping</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add channel locations.</span>
 
 <span class="sd">    Parameters</span>
@@ -389,7 +389,7 @@
 
     <span class="n">n_runs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">raws</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">sanitize_helmet</span><span class="p">(</span><span class="n">ch_name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sanitize_helmet</span><span class="p">(</span><span class="n">ch_name</span><span class="p">):</span>
         <span class="n">ch_label</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ch_name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">))</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;MEG</span><span class="si">{</span><span class="n">ch_label</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">&#39;</span>
 
@@ -429,7 +429,7 @@
 
 <div class="viewcode-block" id="read_opm_info">
 <a class="viewcode-back" href="../../generated/opmcoils.analysis.read_opm_info.html#opmcoils.analysis.read_opm_info">[docs]</a>
-<span class="k">def</span> <span class="nf">read_opm_info</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_opm_info</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read info for OPM.</span>
 
 <span class="sd">    Parameters</span>
@@ -453,7 +453,7 @@
 
 <div class="viewcode-block" id="find_events">
 <a class="viewcode-back" href="../../generated/opmcoils.analysis.find_events.html#opmcoils.analysis.find_events">[docs]</a>
-<span class="k">def</span> <span class="nf">find_events</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_events</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find events in OPM-MEG data.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">raw</span><span class="o">.</span><span class="n">preload</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;raw data must be preloaded&#39;</span><span class="p">)</span>
@@ -475,7 +475,7 @@
 
 <div class="viewcode-block" id="get_good_chs">
 <a class="viewcode-back" href="../../generated/opmcoils.analysis.get_good_chs.html#opmcoils.analysis.get_good_chs">[docs]</a>
-<span class="k">def</span> <span class="nf">get_good_chs</span><span class="p">(</span><span class="n">fnames</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_good_chs</span><span class="p">(</span><span class="n">fnames</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get good channels from txt files with residual fields.</span>
 
 <span class="sd">    Each time on-sensor coils are used to zero the background field,</span>
@@ -508,7 +508,7 @@
 
 <div class="viewcode-block" id="load_remnant_fields">
 <a class="viewcode-back" href="../../generated/opmcoils.analysis.load_remnant_fields.html#opmcoils.analysis.load_remnant_fields">[docs]</a>
-<span class="k">def</span> <span class="nf">load_remnant_fields</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">ch_names</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_remnant_fields</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">ch_names</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Load remnant fields from txt file.</span>
 
 <span class="sd">    Parameters</span>
@@ -576,7 +576,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>
